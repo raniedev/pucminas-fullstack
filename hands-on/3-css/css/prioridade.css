@@ -1,0 +1,55 @@
+p, span, a, b, em, i{
+    padding: 10px;
+    color: #fff;
+}
+
+li a {
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #fff;
+}
+
+/*  Mais específico                                                                                   Menos Específico
+**  <---------------------------------------------------------------------------------------------------------------->
+**  1º atributo inline; 2º indicador(id); 3º classe, pseudo-classe ou atributos comuns; 4º elemento ou pseudo-elemento.
+**  
+**  ex.:    1º, <p style="">
+**          2º, #id10
+**          3º, .classe
+**          4º, div
+**
+**  OBS.: A palavra-chave !important faz a declaração prevalecer sobre as demais
+*/
+
+/* 0,0,0,1 */
+p {
+    background-color: green;
+}
+
+/* 0,0,1,1 */
+.classe {
+    background-color: teal;
+}
+
+/* 0,1,0,1 */
+#identificador {
+    background-color: darkorange;
+}
+
+span {
+    background-color: darkred !important;
+}
+
+i {
+    background-color: green;
+}
+
+i {
+    background-color: mediumslateblue;
+}

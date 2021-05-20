@@ -1,0 +1,49 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+}
+
+header{
+    background-color: teal;
+}
+
+header img {
+    width: 100px;
+}
+
+header ul {
+    margin: 0;
+}
+
+header nav {
+    float: right;
+    margin-top: 40px;
+}
+
+header nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+article {
+    width: 70%;
+    color: #fff;
+    background-color: #8f8f8f;
+    float: left;
+}
+
+aside {
+    width: 30%;
+    color: #fff;
+    background-color: #161616;
+    float: left;
+}
+
+aside img {
+    width: 100%;
+}
+
+footer {
+    clear: both;
+    background-color: teal;
+}

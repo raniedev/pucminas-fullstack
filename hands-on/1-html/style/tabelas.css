@@ -1,0 +1,18 @@
+table {
+    width: 100%;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+th {
+    background-color: #161618;
+    color: #fff;
+}
+
+table caption {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+td {
+    background-color: #eee;
+}
