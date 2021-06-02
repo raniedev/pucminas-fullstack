@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Elementos de formulários e avançados</title>
+        <link rel="stylesheet" type="text/css" href="style/formularios.css">
+        <script src="script/formularios.js"></script>
+    </head>
+    <body>
+        <h1>Básico dos Formulários</h1>
+        <h2>Inputs: Text, Password, Email, Checkbox, Radio</h2>
+        <form id="cadastro" action="register.php" method="POST">
+            <fieldset>
+                <legend>Novo cadastro</legend>
+                <label for="usuario">Usuário:</label>
+                <input class="itens" type="text" name="usuario" id="usuario" required><br>
+                <label for="senha">Senha:</label>
+                <input class="itens" type="password" name="senha" id="senha" required><br>
+                <label for="email">Email:</label>
+                <input class="itens" type="email" name="email" id="email" required><br>
+                <input type="checkbox" name="notificacao" id="notificacao" value="true">
+                <small id="sm">
+                    <label for="notificacao">Receber notificações sobre novidades no email</label>
+                </small><br><br>
+                <label>Sexo:</label><br>
+                <input type="radio" name="sexo" id="masculino" value="masculino" required>
+                <label for="masculino">Masculino</label>
+                <input type="radio" name="sexo" id="feminino" value="feminino" required>
+                <label for="feminino">Feminino</label><br>
+                <input class="itens" type="submit" value="Cadastrar">
+            </fieldset>
+        </form>
+        <h2>Textarea, Select option</h2>
+        <form id="feedback" action="feedback.php" method="GET">
+            <fieldset>
+                <legend>Sugestões</legend>
+                <textarea name="caixa" id="caixa" cols="50" rows="10" placeholder="Envie sua sugestão"></textarea>
+                <label for="estado">Avaliação: </label>
+                <select name="avaliacao" id="avaliacao">
+                    <option value="5">&starf;&starf;&starf;&starf;&starf;</option>
+                    <option value="4">&starf;&starf;&starf;&starf;</option>
+                    <option value="3">&starf;&starf;&starf;</option>
+                    <option value="2">&starf;&starf;</option>
+                    <option value="1">&starf;</option>
+                </select>
+                <input class="itens" type="submit" value="Enviar">
+            </fieldset>
+        </form>
+        <h2>Iframe</h2>
+        <iframe id="youtube" src="https://youtube.com/embed/FvLK66CFRH4?autoplay=1&mute=1" frameborder="0" allowfullscreen>
+        </iframe>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+article {
+    font-weight: bold;
+}
+
+table {
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+/* 
+**  > NOTAS SOBRE COMBINAÇÃO DE SELETORES
+**  ----------------------------------------------------------------------------------------------------------
+**  A, B {...}      duas regras distintas A {} e B {}                                       ex.: p, span {...}
+**  AB {...}        elementos associados a A e B ao mesmo tempo(usando classe e ids)        ex.: p.titulo {...}
+**  A B {...}       elementos associados a B, descendentes de elementos associados a A      ex.: div p {...}
+**  A > B {...}     elementos associados a B, próximo irmão de elementos associado a A      ex.: div > p {...}
+**  A + B {...}     elementos associado a B,  próximo irmão de elementos associado a A      ex.: div + p {...]
+**  A ~ B {...}     elementos associados a B, próximos irmãos de elementos associados a A   ex.: div ~ p {...}
+**  ----------------------------------------------------------------------------------------------------------
+**  > Em outras palavras
+**  A, B        = aplica efeito para ambos
+**  A.B ou A#B  = aplique efeito no marcador de classe ou id em referência a tag A
+**  A B         = aplique efeito em qualquer descendente B em relação a A
+**  A > B       = aplique efeito em B quando ele for filho direto de A
+**  A + B       = aplique efeito no primeiro irmão B em relação a A
+**  A ~ B       = aplique efeito em B se ele for irmão de A
+*/
+
+pre, code {
+    color: blueviolet;
+}
+
+li.marcador {
+    color: lime;
+}
+
+li#ativo {
+    color: lime;
+}
+
+div p {
+    color: crimson;
+}
+
+div > span {
+    color: darkgoldenrod;
+}
+
+h4 + table {
+    color: deeppink;
+}
+
+h5 ~ table {
+    color: springgreen;
+}
