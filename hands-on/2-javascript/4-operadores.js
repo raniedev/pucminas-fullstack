@@ -77,3 +77,65 @@ console.log(21, zeta, typeof zeta);
 console.log(22, eta, typeof eta);
 console.log(23, theta, typeof theta);
 console.log(24, iota, typeof iota);
+
+/*
+    Comparações, sempre retornam um valor boolean
+    >   maior que
+    <   menor que
+    >=  maior ou igual a
+    <=  menor ou igual a
+    ==  igual
+    !=  diferente
+*/
+
+console.log(25, 50 > 5);
+console.log(26, 50 < 5);
+console.log(27, 50 >= 5);
+console.log(28, 50 <= 5);
+console.log(29, 50 == 5);
+console.log(30, 50 != 5);
+
+// Comparações de String, considera-se o sistema Unicode. Letras maiúsculas precedem as minúsculas na ordem.
+// símbolos e números < A~Z < a~z
+console.log(31, 'Z' > 'A');
+console.log(32, 'Pato' > 'Pata');
+console.log(33, 'Dezena' > 'Dez');
+console.log(34, 'a' > 'A');
+
+// Comparação de tipos diferentes
+console.log(35, "2" > 1); // coerção na string "2" e vira um número
+console.log(36, "01" == 1); // coerção na string "01" e vira um número
+console.log(37, true == 1); // true vale 1
+console.log(38, false == 0); // false vale 0
+console.log(39, "" == false); //string vazia "" vale como false
+console.log(40, "" == 0); //string vazia "" vale como false
+
+let nome; //sem atribuição será false, assim como =0; =""; e =null;
+
+if (nome) {
+    console.log(41, nome);
+} else {
+    console.log(41, "Vazio");
+}
+
+// Estritamente igual ===, compara os valores e tipos ao mesmo tempo 
+console.log(42, "1" == 1); //true
+console.log(43, "1" === 1); //false
+
+//null x undefined em um estritamente igual
+console.log(44, null == undefined); //true
+console.log(45, null === undefined); //false
+let kappa;
+console.log(46, kappa == undefined); //true
+console.log(47, kappa == null); //true
+console.log(48, kappa === undefined); //true
+console.log(49, kappa === null); //false
+
+// Operadores Lógicos
+// Conjunção (AND) &&
+// Disjunção (OR) ||
+// Negação (NOT) !
+
+console.log(50, false && false); //false
+console.log(51, true || false); //true
+console.log(52, !true); //false
