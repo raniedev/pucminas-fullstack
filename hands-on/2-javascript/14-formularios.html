@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulário</title>
+        <style>
+            body{
+                font-family: 'Courier New', Courier, monospace;
+            }
+
+            input {
+                margin-bottom: 10px;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 10px;
+            }
+        </style>
+        <script>
+            onload = () => {
+                nomeUsuario.onkeydown = (e) => console.log(e.code);
+
+                nomeUsuario.onblur = () => {
+                    if (nomeUsuario.value == "") {
+                        nome_erro.innerHTML = "!";
+                        nomeUsuario.style.border = "2px solid #f88";
+                    } else {
+                        nome_erro.innerHTML = "";
+                        nomeUsuario.style.border = "2px solid #000"
+                    }
+
+                    if (nomeUsuario.value != "" && senhaUsuario.value != "") {
+                        btnsubmit.disabled = false;
+                    } else {
+                        btnsubmit.disabled = true;
+                    }
+                }
+
+                senhaUsuario.onblur = () => {
+                    if (senhaUsuario.value == "") {
+                        senha_erro.innerHTML = "!";
+                        senhaUsuario.style.border = "2px solid #f88";
+                    } else {
+                        senha_erro.innerHTML = "";
+                        nomeUsuario.style.border = "2px solid #000"
+                    }
+
+                    if (nomeUsuario.value != "" && senhaUsuario.value != "") {
+                        btnsubmit.disabled = false;
+                    } else {
+                        btnsubmit.disabled = true;
+                    }
+                }
+
+                login.onsubmit = () => {
+                    console.log(login.nome.value);
+                    console.log(nomeUsuario.value);
+                    if (nomeUsuario.value == "" || senhaUsuario.value == "") {
+                        alert("Os campos nome e senha são obrigatórios.");
+                    } else {
+                        mensagem.innerHTML = `Olá, ${nomeUsuario.value}`;
+                        login.style.display = "none";
+                    }
+                    // return false; impede que o usuário engatilhe a página do method até que o resultado seja true
+                    return false;
+                };                
+            };
+        </script>
+    </head>
+    <body>
+        <p id="mensagem">Por favor, efetue sua autenticação para acessar nosso site.</p>
+        <h1>Formulários</h1>
+        <p>O elemento &lt;form&gt; engloba todos os campos e define o que deve ser feito com o formulário. Geralmente possui dois atributos:</p>
+        <ul>
+            <li><strong>action:</strong> define o URL para o qual os dados do formulário devem ser enviados.</li>
+            <li><strong>method:</strong> define o método HTTP que será usado no envio dos dados(geralmente <strong>get</strong> ou <strong>post</strong>)</li>
+        </ul>
+        <form id="login" action="" method="GET">
+            <label for="nomeUsuario">Nome: </label>
+            <input type="text" name="nome" id="nomeUsuario">
+            <span id="nome_erro"></span><br>
+            <label for="senhaUsuario">Senha: </label>
+            <input type="password" name="senha" id="senhaUsuario">
+            <span id="senha_erro"></span><br>
+            <label for="idadeUsuario">Idade: </label>
+            <input type="range" name="indade" id="idadeUsuario" min="18" max="60"><br>
+            <button id="btnsubmit" type="submit" disabled>Entrar</button>
+        </form>
+        <h2>Tipos de campos textuais</h2>
+        <p>O atributo type do elemento &lt;input&gt; ajuda a definir seu conteúdo ou seu uso. Alguns dos principais tipos textuais são:</p>
+        <table>
+            <tr>
+                <th>type</th>
+                <th>descrição</th>
+            </tr>
+            <tr>
+                <td>text</td>
+                <td>valor padrão, usado para qualquer tipo de texto</td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td>campo usado para entrada de emails(o teclado poderá se ajustar automaticamente)</td>
+            </tr>
+            <tr>
+                <td>date</td>
+                <td>campo para data no formato de dia, mês e ano</td>
+            </tr>
+            <tr>
+                <td>datetime-local</td>
+                <td>campo para data e hora</td>
+            </tr>
+            <tr>
+                <td>number</td>
+                <td>campo para entrada de números</td>
+            </tr>
+            <tr>
+                <td>password</td>
+                <td>campo para entrada de senhas (os caracteres são substituídos por *)</td>
+            </tr>
+            <tr>
+                <td>hidden</td>
+                <td>campo escondido (usado para passagem de valores à página destino sem conhecimento do usuário)</td>
+            </tr>
+        </table>    
+    </body>
+</html>
