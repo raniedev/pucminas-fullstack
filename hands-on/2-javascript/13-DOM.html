@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document Object Model</title>
+        <style>
+            body {
+                font-family: 'Courier New', Courier, monospace;
+            }
+        </style>
+        <script>
+            window.onload = () => {
+                let button = document.getElementById('bt');
+                alert(button.nodeName + ' ' + button.nodeType + ' ' + button.nodeValue);
+                alert(button.firstChild.nodeValue);
+
+                let img = document.getElementById('f1');   
+                console.log(img);
+                alert(img.getAttributeNames().join(' ; '));
+                img.setAttribute('src', 'img/cat.png');
+                img.setAttribute('alt', 'Gato');
+                console.log(img);
+            };
+        </script>
+    </head>
+    <body>
+        <button id="bt">Olá</button>
+        <img id="f1" src="img/dog.png" alt="Cachorro" width="150px">
+
+        <h1>DOM</h1>
+        <p>Alterações no objeto <i lang="en-US">document</i>, feitas por meio de Javascript resultam em alterações na página (mas não no código fonte)</p>
+        <p>A especificação HTML diz quais são os métodos de cada elemento do documento(Essa API é chamada de DOM - <i lang="en-US">Document Object Model</i>)</p>
+        <p>Por meio desses métodos é possível se alterar:</p>
+        <ul>
+            <li>A estrutura(hierarquia dos elementos)</li>
+            <li>Os conteúdos</li>
+            <li>Os estilos</li>
+        </ul>
+        <h2>Métodos para acesso aos elementos do documento</h2>
+        <ul>
+            <li><code>document.getElementById('id')</code><br>retorna um único elemento</li>
+            <li><code>document.getElementByTagName('tag')</code><br>retorna uma lista de elementos</li>
+            <li><code>document.querySelector('seletor')</code><br>retorna um único (primeiro) elemento usando a seleção no formato da CSS</li>
+            <li><code>document.querySelectorAll('seletor')</code><br>retorna uma lista de elementos</li>
+        </ul>
+
+        <h2>Alteração do conteúdo dos elementos</h2>
+        <p>A alteração do conteúdo dos elementos pode ser feita através da propriedade innerHTML.</p>
+        <p>O conteúdo inclui os seus elementos descendentes.</p>
+        <pre>
+    document
+        querySelector('#introducao')
+        innerHTML = '&lt;strong&gt;Introdução&lt;/strong&gt;';
+        </pre>
+
+        <h2>Alteração do conteúdo dos elementos</h2>
+        <p>Se a alteração for apenas do texto, pode-se usar a propriedade innerText.</p>
+        <pre>
+    document
+        querySelector('#introducao')
+        innerText = 'Introdução';
+        </pre>
+        <h2>Árvore de um documento</h2>
+        <img src="img/DOM.jpg" width="400px" alt="Imagem da árvore hierárquica do Objeto Modelo do Documento">
+        <p>No DOM, tudo é um nó(<i lang="en-US">node</i>)</p>
+        <ul>
+            <li>O documento(inteiro) é um nó(<i lang="en-US">document node</i>)</li>
+            <li>Todo elemento é um nó(<i lang="en-US">element node</i>)</li>
+            <li>O texto dos elementos são nós(<i lang="en-US">text node</i>)</li>
+            <li>Cada atributo é um nó(<i lang="en-US">attribute node</i>)</li>
+            <li>Os comentários são nós(<i lang="en-US">comment node</i>)</li>
+        </ul>
+    </body>
+</html>
