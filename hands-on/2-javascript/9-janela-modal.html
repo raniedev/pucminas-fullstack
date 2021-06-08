@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Janela Modal</title>
+        <script>
+            function ola() {
+                alert("Olá mundo!");
+
+                // Interação com o usuário
+                let nome = prompt("Qual é o seu nome?", "Visitante") // Visitante representa um valor padrão para caso o usuário não informe nada, este valor será utilizado, porque vazio gera null
+                alert(`Olá ${nome}`);
+
+                // Janela de confirmação pelo usuário, uma janela alternativa baseada em botões e retornam valores lógicos
+                let notificacao = confirm("Deseja ativar as notificações?");
+                if(notificacao) {
+                    alert("Você será notificado sobre nossas novidades.");
+                } else {
+                    alert("Notificações desligadas.");
+                }
+            }
+        </script>
+    </head>
+    <body onload="ola()">
+        <p>Javascript.</p>
+    </body>
+</html>
