@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Navigator e Document</title>
+        <script>
+            /* 
+            [Navigator]
+            O objeto navigator nos ajuda a entender qual é o contexto de navegação do usuário. Por exemplo, podemos obter as seguintes informações:
+            navigator.userAgent = assinatura exclusiva do navegador, qual navegador está sendo utilizado
+            navigator.language = idioma padrão do navegador
+            navigator.geolocation = coordenadas geográficas do dispositivo
+            navigator.online = conectividade do dispositivo
+            navigator.platform = plataforma do usuário
+
+            [Document]
+            O objeto document nos permite obter informaçõs sobre a página que está sendo apresentada no navegador. A lista dessas informações é bem extensa. Algumas delas são:
+            document.documentURI= url da página
+            document.documentElement = referência ao elemento <html> da página
+            document.head e document.body = referências do cabeçalho é corpo da página
+            document.links e document.images = listas de links e de imagens da página
+            */
+
+            // É possível obter uma referência para um elemento qualquer da página, por meio do seu ID
+            window.onload = () => {
+                let button = document.getElementById('bt');
+                button.innerHTML = "<strong>Olá mundo</strong>";
+                button.style.backgroundColor = "#7819b8";
+                button.style.color = "#fff";
+                button.style.padding = "10px";
+                button.onclick = () => alert("Olá mundo");
+            }
+        </script>
+    </head>
+    <body>
+        <button id="bt">Olá</button>
+    </body>
+</html>

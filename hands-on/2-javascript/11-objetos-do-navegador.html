@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Objetos do Navegador</title>
+        <script>
+        /*
+        Os navegadores oferecem objetos internos que nos ajudam a melhorar a interatividade com o usuário
+
+        window
+        janela em que a página web está sendo apresentada, tamanho de janela etc.
+
+        window.screen = várivas propriedades da tela
+        window.history = referências às últimas páginas acessadas
+        window.location = objetos com dados de url da página
+        window.alert() = janela modal com mensagem e ok
+        window.confirm() = janela modal com mensagem, ok e cancel
+        window.prompt() = janela modal com interação de entrada do usuário
+        window.print() = impressão do documento
+        window.setTimeout() = executa uma função depois de um tempo pré-definido
+        window.setInterval() = executa uma função repetidas vezes em intervalos de tempo pré-definidos
+        
+        navigator
+        informações sobre o navegador
+
+        document
+        acesso a informações e recursos da página atual, como conteúdo e formatação
+        */
+
+        //Não se faz necessárioa atribuir window. antes de onload, pois o objeto window. já vez subentendido como o pai de todo o documento
+
+        //mais extenso seria window.onload
+        onload = () => { 
+            // mais extenso seria window.bt.onclick
+            bt.onclick = () => {
+                setTimeout(() => alert("Olá mundo!"), 2000);
+            };
+        };
+        </script>
+    </head>
+    <body>
+        <p><button id="bt">Olá</button></p>
+    </body>
+</html>

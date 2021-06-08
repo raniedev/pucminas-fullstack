@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos</title>
+    <style>
+        p {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+    <script>
+        /*
+        Principais eventos do mouse
+        click - quando o mouse é clicado em um elemento da página
+        mouseover - quando o mouse entre sobre a área de um elemento
+        mouseout - quando o mouse deixa a área de um elemento
+        mousemove - quando o mouse é movimentado
+        contextmenu - quando o botão direito do mouse é clicado
+        mousedown - quando o botão do mouse é pressionado
+        mouseup = quando o botão do mouse é solto
+
+        Formulário
+        submit - quando um formulário é enviado
+        focus - quando um campo do formulário é ativado
+        blur - quando o usuário deixa um campo do formulário
+        change - quando o valor de um campo é alterado
+        select - quando é feita uma escolha em uma caixa de seleção
+
+        Teclado
+        keydown - quando uma tecla é pressionada
+        keyup - quando a tecla é liberada
+
+        Janela
+        load - quando a página termina de ser carregada
+        unload - quando o usuário deixa a página ou fecha o navegador
+        resize - quando a janela do navegador é redimensionada
+        */
+        function entrou() {
+            alert("Entrou");
+        }
+        function saiu() {
+            alert("Saiu");
+        }
+
+        function hello() {
+            alert("Hello World!");
+        }
+
+
+        window.onload = () => {
+            bt.onclick = () => alert("Olá mundo!");
+            bt2.onclick = hello;
+            // Ainda há mais uma forma de associação de uma função a um evento de algum elemento. addEventListener
+            bt3.addEventListener(
+                'click', () => alert("¡Hola mundo!")
+            );
+        }
+    </script>
+</head>
+<body>
+    <!-- <p onmouseover="entrou()" onmouseout="saiu()">Olá mundo</p> -->
+    <button id="bt">Português</button>
+    <button id="bt2">English</button>
+    <button id="bt3">Español</button>
+</body>
+</html>
