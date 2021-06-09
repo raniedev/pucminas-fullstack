@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JSON - JavaScript Object Notation</title>
+        <script>
+            // Um objeto JSON se parece muito com um objeto Javascript mas com os nomes das propriedades entre aspas.
+            let cliente = {
+                "nome": 'João',
+                "idade": 36,
+                "filhos": [
+                    {"nome": 'Ana', "idade":  13},
+                    {"nome": 'Pedro', "idade":  10}
+                ]
+            };
+            console.log(0, cliente, typeof cliente);
+            
+            let usuario = {
+                nome: 'João',
+                idade: 36,
+                filhos: [
+                    {nome: 'Ana', idade:  13},
+                    {nome: 'Pedro', idade:  10}
+                ]
+            };
+            
+            let strUsuario = JSON.stringify(usuario);
+            console.log(1, usuario, typeof usuario);
+            console.log(2, strUsuario, typeof strUsuario);
+
+            let strUsuario2 = '{\"nome\":\"João\",\"idade\":36,\"filhos\":[{\"nome\":\"Ana\",\"idade\":13},{\"nome\":\"Pedro\",\"idade\":10}]}';
+
+            try {
+                // Converter em objeto usando JSON.parse();
+                let usuario2 = JSON.parse(strUsuario2);
+                console.log(3, usuario2, typeof usuario2);
+            } catch(e) {
+                console.log("Erro");
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1>JSON - JavaScript Object Notation</h1>
+    </body>
+</html>
