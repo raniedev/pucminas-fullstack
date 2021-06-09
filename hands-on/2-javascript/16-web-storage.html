@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Web Storage</title>
+        <style>
+            body {
+                font-family: 'Courier New', Courier, monospace;
+            }
+        </style>
+        <script>
+            let usuario = {
+                nome: 'André',
+                idade: 35,
+                filhos: [
+                    {nome: 'Bob', idade: 15},
+                    {nome: 'Aline', idade:19}
+                ],
+                casado: true
+            };
+
+            localStorage.setItem("usuario", JSON.stringify(usuario));
+
+
+            let strUsuario = localStorage.getItem('usuario');
+            console.log(strUsuario, typeof strUsuario);
+            let usuario2 = JSON.parse(strUsuario);
+            console.log(usuario2, typeof usuario2);
+        </script>
+    </head>
+    <body>
+        <h1>Web Storage</h1>
+        <h2>Armazenamento Local</h2>
+        <p>Armazenamento local é uma forma de guardarmos informações no navegador do usuário. Essas informações podem ser recuperadas mais tarde, quando ele retornar ao nosso site.</p>
+        <p>Tipos de informações que podem ser guardadas no navegador:</p>
+        <ul>
+            <li>Dados e de acesso, como o nome de usuário.</li>
+            <li>Estado da aplicação, como a última página que ele visitou</li>
+            <li>Informações de configuração do site, que personalizam a sua experiência</li>
+            <li>Dados para funcionamento <i>offline</i></li>
+        </ul>
+
+        <h2>API Web Storage</h2>
+        <p>A API(<i>Application Programming Interface</i>) Web Storage oferece uma implementação simples e potente para o armazenamento local.</p>
+        <p>Essa API é implementada no navegador por meio de dois objetos pertencentes ao objeto <strong>window</strong>:</p>
+        <ul>
+            <li><strong>window.localStorage</strong> - Armazenamento permanente dos dados.</li>
+            <li><strong>window.sessionStorage</strong> - Armazenamento por uma sessão(mesma janela e mesma aba, inclusive durante recargas da página)</li>
+        </ul>
+        <p>Especificação: <a href="htts://www.w3.org/TR/webstorage">W3.org Web Storage</a></p>
+
+        <h2>Vantagens</h2>
+        <ul>
+            <li>Armazenamento persistente</li>
+            <li>Facilidade de uso, meio de pares e valores (como os objetos JS)</li>
+            <li>Suporte em todos os navegadores</li>
+            <li>Não há envios dos dados para o servidor, garantindo privacidade e segurança</li>
+        </ul>
+
+        <h2>Desvantagens</h2>
+        <ul>
+            <li>Limite de 2+ MB(depende do navegador)</li>
+            <li>Só armazena strings</li>
+            <li>Não possui recursos de busca, indexação, atualização, versionamento, etc.</li>
+        </ul>
+
+        <h2>Operações</h2>
+        <p>Opções para o armazenamento de dados:</p>
+        <ul>
+            <li>localStorage.getItem("chave")</li>
+            <li>localStorage.chave</li>
+            <li>localStorage["chave"]</li>
+        </ul>
+
+        <p>Opções para a recuperação do valor associado a uma chave.</p>
+        <ul>
+            <li>localStorage.getItem("chave")</li>
+            <li>localStorage.chave</li>
+            <li>localStorage["chave"]</li>
+        </ul>
+
+        <p>Opção para a remoção do valor associado a uma chave:</p>
+        <ul>
+            <li>localStorage.removeItem("chave")</li>
+            <li>delete localStorage.chave</li>
+            <li>delete localStorage["chave"]</li>
+        </ul>
+
+        <p>Opção para a remoção de todos os dados:</p>
+        <ul>
+            <li>localStorage.clear()</li>
+        </ul>
+    </body>
+</html>

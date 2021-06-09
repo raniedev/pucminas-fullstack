@@ -5,6 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>JSON - JavaScript Object Notation</title>
+        <style>
+            body {
+                font-family: 'Courier New', Courier, monospace;
+            }
+        </style>
         <script>
             // Um objeto JSON se parece muito com um objeto Javascript mas com os nomes das propriedades entre aspas.
             let cliente = {
@@ -43,6 +48,34 @@
         </script>
     </head>
     <body>
-        <h1>JSON - JavaScript Object Notation</h1>
-    </body>
+        <h1>JSON</h1>
+        <h2>Comunicação pela Web</h2>
+        <p>Com JavaScript, é possível enviarmos ou recebermos informações de banco de dados <i>online</i> ou interagirmos com qualquer serviço na web(por meio de suas APIS)</p>
+        <pre>
+     ------------&gt; requisição -----&gt;-------
+    |                                      |
+COMPUTADOR                              SERVIDOR online
+    |                                      |
+     -------&lt;------ resposta &lt;--------------
+        </pre>
+        <span>JSON será o padrão para a troca</span>
+
+        <h2>JavaScript Object Notation</h2>
+        <p>JSON é um formato para troca de dados entre sistemas baseado em JavaScript.</p>
+        <p>Um objeto JSON se parece muito com um objeto JavaScript, mas com os nomes das propriedades entre aspas.</p>
+
+        <h2>Covertendo um objeto JSON para texto</h2>
+        <p>Algumas vezes, precisamos transformar um objeto JSON em uma <i>string</i> para enviarmos por um formulário, pela rede ou para armazenarmos localmente.</p>
+
+        <code>
+            let usuario = {"nome": "João", "idade": 35};<br>
+            let str_usuario = JSON.stringify(usuario);
+        </code>
+
+        <h2>Convertendo de volta para objeto</h2>
+        <p>Ao recebermos de uma resposta HTTP ou do armazenamento local, um objeto que está na forma de uma string, podemos reconstruí-lo da seguinte forma:</p>
+        <code>
+            let = usuario = JSON.parse(str_usuario);
+        </code>
+    </body> 
 </html>
