@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ajax</title>
+    </head>
+    <script>
+        // Ajax = asynchronous javascript and xml
+        // o coração do Ajax é o objeto XMLHttpRequest
+
+        function ajax() {
+            try {
+                let xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function() {
+                    if(xhttp.readyState == 4) {
+                        if(xhttp.status == 200) {   
+                            let usuario = JSON.parse(xhttp.responseText);
+                            nome.innerHTML = usuario.nome;
+                            idade.innerHTML = usuario.idade;
+                            filhos.innerHTML = usuario.filhos.map(
+                                (e) => e.nome // o mesmo que: function(e) {return e.nome;}
+                            ).join(", ");
+                            
+                            // Apenas para visualizar o que acontece
+                            console.log(usuario);
+                            console.log(usuario.filhos);
+                            console.log(usuario.filhos.map);
+                            console.log(usuario.filhos.map(
+                                (e) => e.nome
+                            ));
+                            
+                        } else {
+                            console.warning(`Status: ${xhttp.status}`);
+                        }
+                    }
+                };
+
+                xhttp.open('GET', 'json/dados.json', true);
+                xhttp.send();
+            } catch (e){
+                alert("Erro na comunicação com o servidor.");
+            }
+        }
+    </script>
+    <body>
+        <h1>Ajax</h1>
+        <button onclick="ajax()">Carrega usuario</button>
+        <dl>
+            <dt>Nome: </dt><dd id="nome"></dd>
+            <dt>Idade: </dt><dd id="idade"></dd>
+            <dt>Filhos: </dt><dd id="filhos"></dd>
+        </dl>
+    </body>
+</html>
