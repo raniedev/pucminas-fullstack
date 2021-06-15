@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IndexedDB</title>
+        <script>
+            let livros = [
+                {id: 1, titulo: 'Ilíada', autor: 'Homero'},
+                {id: 2, titulo: 'Odisséia', autor: 'Homero'}
+            ];
+            let bd;
+            let reqBD = indexedDB.open('meuBD', 1);
+            
+            reqBD.onsuccess = () => {
+                bd = reqBD.result;
+            };
+
+            reqBD.onerror = () => {
+                console.log(reqBD.error);
+            };
+
+            reqBD.onupgradeneeded = (e) => {
+                bd = reqBD.result;
+                if(!bd.objectStoreNames.contains('livros')) {
+                    bd.createObjectStore('livros', {keyPath: 'id'});
+                }
+            };
+            
+            onload = () => {};
+        </script>
+    </head>
+    <body>
+        <h1>IndexedDB</h1>
+        <p id="output"></p>
+    </body>
+</html>
