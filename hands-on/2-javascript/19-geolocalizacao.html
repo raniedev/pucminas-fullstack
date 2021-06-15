@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Geolocalização</title>
+        <style>
+            code {
+                color: blueviolet;
+            }
+        </style>
+        <script>
+            onload = () => {
+                let geo = navigator.geolocation;
+                const GEO_COORDS = function (p) {
+                    let lat = p.coords.latitude;
+                    let lng = p.coords.longitude;
+                    output.innerHTML = `Coordenadas: ${lat}, ${lng}`;
+                };
+
+                // Tratamento de erros:
+                const GEO_ERROR = function (error) {
+                    switch(error.code) {
+                        case error.TIMEOUT:
+                            console.log("Limite de tempo para localização.");
+                            break;
+                        case error.POSITION_UNAVALIABLE:
+                            console.log("Localização não disponível");
+                            break;
+                        case error.PERMISSION_DENIED:
+                            break;
+                        default:
+                            alert("Erro na geolocalização. Código: " + error.code);
+                    }
+                };
+                
+                let watchID = geo.watchPosition(GEO_COORDS, GEO_ERROR);
+                // geo.getCurrentPosition(GEO_COORDS);
+
+                console.log(watchID);
+                stWatch.onclick = () => {
+                    console.log(watchID);
+                    geo.clearWatch(watchID);
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <h1>Geolocalização</h1>
+        <p id="output"></p>
+        <p><button id="stWatch">Para georeferenciamento</button></p>
+
+        <h2>Geolocalização contínua</h2>
+        <p>Através do método <code>watchPosition()</code> (só se justifica para dispositivos móveis).</p>
+
+        <p>Ativação:</p>
+        <ul>
+            <li><code>let watchID  =  geo.watchPosition(GEO_COORDS, GEO_ERROR);</code></li>
+        </ul>
+
+        <p>Cancelamento:</p>
+        <ul>
+            <li><code>geo.clearWatch(watchID);</code></li>
+        </ul>
+
+        <h2>Parâmetros</h2>
+        <p><code>enableHighAccuracy</code></p>
+        <ul>
+            <li>Alta precisão da leitura</li>
+        </ul>
+
+        <p><code>maximumAge</code></p>
+        <ul>
+            <li>Tempo máximo (em milisegundos) de vida da posição (uso do cache previne consumo excessivo de bateria)</li>
+        </ul>
+
+        <p>timeout</p>
+        <ul>
+            <li>Tempo máximo em milisegundos para a tentativa de obter a geolocalização</li>
+        </ul>
+        <code>
+<pre>
+let opcoes = {
+    timeout: 300000,
+    enableHighAccuracy: true,
+    maximumAge: 60000
+};
+getCurrentPosition(GEO_COORDS, GEO_ERROR, opcoes)
+</pre>
+        </pre>
+    </body>
+</html>
