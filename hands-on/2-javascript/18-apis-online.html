@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ajax</title>
+    </head>
+    <style>
+        #resposta {
+            border: thin solid black;
+            padding: 10px;
+        }
+
+        form input, .botao{
+            margin-bottom: 14px;
+        }
+
+    </style>
+    <script>
+        // Ajax = asynchronous javascript and xml
+        // o coração do Ajax é o objeto XMLHttpRequest
+
+        function ajax() {
+            try {
+                let xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function() {
+                    if(xhttp.readyState == 4) {
+                        console.log(`Status: ${xhttp.status}`);
+                        let objeto = JSON.parse(xhttp.responseText);
+                        console.log(objeto);
+                        // if(xhttp.status == 200) {   
+
+                            // Exemplo 2
+                            // let objeto = JSON.parse(xhttp.responseText);
+                            // resposta.innerHTML = objeto.data.first_name + " " +
+                            // objeto.data.last_name + "<br>" +
+                            // objeto.data.email;
+
+                            // Exemplo 1
+                            // resposta.innerHTML = objeto.data.map(
+                            //     (e) => e.email
+                            // ).join("<br>");
+                        //     console.log(objeto);
+                        // } else {
+                        //     console.warning(`Status: ${xhttp.status}`);
+                        // }
+                    }
+                };
+                
+                let usuario = {
+                    first_name: nome.value,
+                    email: email.value
+                };
+                xhttp.open('POST', 'https://reqres.in/api/users', true);
+                xhttp.send(JSON.stringify(usuario));
+            } catch (e){
+                alert("Erro na comunicação com o servidor.");
+            }
+        }
+    </script>
+    <body>
+        <h1>Ajax</h1>
+        <!-- <button class="botao" onclick="ajax()">Carrega usuario</button> -->
+        <button class="botao" onclick="ajax()">Enviar dados</button>
+        <form action="">
+            <label for="nome">Nome:</label>
+            <input id="nome" type="text"><br>
+            <label for="email">Senha:</label>
+            <input id="email" type="email">
+        </form>
+        <p id="resposta"></p>
+    </body>
+</html>
