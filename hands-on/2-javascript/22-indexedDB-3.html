@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IndexedDB</title>
+        <style>
+            input {
+                margin-bottom: 14px;
+            }
+        </style>
+        <script>
+            let bd;
+            let reqBD = indexedDB.open('meuBD', 1);
+            
+            reqBD.onsuccess = () => {
+                bd = reqBD.result;
+            };
+
+            reqBD.onerror = () => {
+                console.log(reqBD.error);
+            };
+
+            reqBD.onupgradeneeded = (e) => {
+                bd = reqBD.result;
+                if(!bd.objectStoreNames.contains('livros')) {
+                    let livrosOS = bd.createObjectStore('livros', {keyPath: 'id'});
+                    livrosOS.createIndex('tituloIDX', 'titulo', {unique: false});
+                    livrosOS.createIndex('autorIDX', 'autor', {unique: false});
+                }
+            };
+            
+            onload = () => {
+                btnC.onclick = () => {
+                    let livro = {
+                        id: +idLivro.value,
+                        titulo: titulo.value,
+                        autor: autor.value
+                    };
+                    let transacaoBD = bd.transaction(['livros'], 'readwrite');
+                    let livrosOS = transacaoBD.objectStore('livros');
+                    let reqOS = livrosOS.add(livro);
+                    reqOS.onsuccess = (e) => {
+                        console.log(reqOS.result);
+                    };
+                    reqOS.onerror = (e) => {
+                        console.log(reqOS.error);
+                    };
+                };
+
+                btnR.onclick = () => {
+                    bd.transaction('livros')//readonly automaticamente
+                    .objectStore('livros')
+                    .get(+idLivro.value).onsuccess = (e) => {
+                        titulo.value = e.target.result.titulo;
+                        autor.value = e.target.result.autor;
+                    };
+                };
+
+                btnU.onclick = () => {
+                    let livro = {
+                        id: +idLivro.value,
+                        titulo: titulo.value,
+                        autor: autor.value
+                    };
+                    bd.transaction(['livros'], 'readwrite')
+                    .objectStore('livros')
+                    .put(livro).onsuccess = (e) => {
+                        console.log("Livro Atualizado.");
+                    };
+                };
+
+                btnD.onclick = () => {
+                    bd.transaction(['livros'], 'readwrite')
+                    .objectStore('livros')
+                    .delete(+idLivro.value).onsuccess = (e) => {
+                        console.log("Livro excluído.");
+                    };
+                };
+
+                btnL.onclick = () => {
+                    bd.transaction('livros')
+                    .objectStore('livros')
+                    .getAll(IDBKeyRange.bound(0,9))
+                    .onsuccess = (e) => {
+                        console.log(e.target.result);
+                    };
+                };
+
+                btnL2.onclick = () => {
+                    bd.transaction('livros')
+                    .objectStore('livros')
+                    // .openCursor(IDBKeyRange.upperBound(2)) //limite superior
+                    .openCursor()
+                    .onsuccess = (e) => {
+                        let cursor = e.target.result;
+                        if(cursor) {
+                            console.log(cursor.value);
+                            cursor.continue();
+                        } else {
+                            console.log("Fim");
+                        }
+                    };
+                };
+
+                btnFT.onclick = () => {
+                    bd.transaction('livros')
+                    .objectStore('livros')
+                    .index('tituloIDX')
+                    .get(titulo.value).onsuccess = (e) => {
+                        idLivro.value = e.target.result.id;
+                        titulo.value = e.target.result.titulo;
+                        autor.value = e.target.result.autor;
+                    };
+                };
+                
+                btnFA.onclick = () => {
+                    bd.transaction('livros')
+                    .objectStore('livros')
+                    .index('autorIDX')
+                    .getAll(IDBKeyRange.upperBound(autor.value)).onsuccess = (e) => { //only(autor.value) trocado por upperBound(autor.value)
+                        console.log(e.target.result);
+                    };
+                };
+            };
+        </script>
+    </head>
+    <body>
+        <h1>IndexedDB</h1>
+        <label for="idLivro">Id:</label>
+        <input type="number" id="idLivro"><br>
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo"><br>
+        <label for="autor">Autor:</label>
+        <input type="text" id="autor"><br>
+        <button id="btnC">Create</button>
+        <button id="btnR">Read</button>
+        <button id="btnU">Update</button>
+        <button id="btnD">Delete</button>
+        <button id="btnL">List</button>
+        <button id="btnL2">List 2</button>
+        <button id="btnFT">Filter by Title</button>
+        <button id="btnFA">Filter by Author</button>
+        <p id="output"></p>
+
+        <h2>Lendo Conjuntos</h2>
+        <p>Podemos buscar por um conjunto de valores que atendam a um critério, das seguintes formas:</p>
+        <ul>
+            <li>Busca do valor exato<br><code>IDBKeyRange.only(valor);</code></li>
+            <li>Busca de valores maiores que o especificado. O próprio valor será incluído se o segundo parâmetro for falso.<br><code>IDBKeyRange.lowerBound(valor, exclusive);</code></li>
+            <li>Busca de valores menores que o especificado. O próprio valor será incluído se o segundo parâmetro for falso.<br><code>IDBKeyRange.upperBound(valor, exclusive);</code></li>
+            <li>Busca de valores entre valor1 e valor2, que serão incluídos apenas se os parâmetros exclusive1 e exclusive2, respectivamente, forem falsos.<br><code>IDBKeyRange.bound(valor1, valor2, exclusive1, exclusive2);</code></li>
+        </ul>
+
+        <p>E a busca para uma faixa de IDs fica assim:</p>
+        <code>
+<pre>
+    bd.transaction('livros')
+    .objectStore('livros')
+    .getAll(IDBKeyRange.bound(2,3)
+    .onsuccess = function(evento) {
+        console.log(evento.result.target);
+    }
+</pre>            
+        </code>
+        <h2>Leitura Sequencial</h2>
+        <p>Para fazermos uma leitura sequencial, sem precisarmos carregar todas as respostas de uma só vez, podemos usar um <strong>cursor</strong> para percorrermos o armazém:</p>
+        <code>
+<pre>
+    let listaLivros = [];
+    bd.transaction('livros')
+      .objectStore('livros')
+      .openCursor() //Pode incluir parâmetros
+      .onsuccess = function(evento) {
+          let cursor = evento.target.result;
+          if(cursor) {
+              listaLivros.push(cursor.value);
+              cursor.continue(); //Chama o método novamente
+          } else {
+              console.log(listaLivros);
+          }
+      }
+</pre>
+        </code>
+        <h2>Índice</h2>
+        <p>Os índices ordenam os objetos em um armazém, de tal forma que as leituras sequenciais sejam mais rápidas (nem todos os objetos são analisados)</p>
+        <p>Criação do índice:</p>
+        <code>
+<pre>
+    reqBD.onupgradeneeded = function(evento) {
+        bd = reqBD.result;
+        if(!bd.objectStoreNames.contains('livros')) {
+            let livrosOS = bd.createObjectStore('livros', keyPath: 'id');
+            livrosOS.createIndex('titulo', 'titulo', {unique: false});
+            livrosOS.createIndex('autor', 'autor', {unique: false}); //(nome do índice, chave, {unique: false});
+        }
+    }
+</pre>
+        </code>
+
+        <h2>Busca pelo índice</h2>
+        <p>Com o índice, podemos buscar um objeto por meio da chave desse índice</p>
+        <code>
+<pre>
+    let indice = bd.transaction('livros')
+                    .objectStore('livros')
+                    .index('titulo');
+    
+    let reqIX = indice.get('Ilíada');
+
+    reqIX.onsuccess = function(evento) {
+        let livro = evento.target.result;
+        if(livro) //!undefined
+            console.log(livro);
+        else
+            console.log("Livro não encontrado");
+    }
+</pre>
+        </code>
+
+        <h2>Lendo conjuntos no índice</h2>
+        <p>E a busca um título até uma determinada string fica assim:</p>
+        <code>
+<pre>
+    let indice = bd.transaction('livros')
+                   .objectStore('livros')
+                   .index('titulo');
+    
+    let reqIX = indice.getAll(IDBKeyRange.upperBound('Matrix'));
+
+    reqIX.onsuccess = function(evento) {
+        let livro = reqIX.result;
+        console.log(livro);
+    }
+</pre>
+        </code>
+    </body>
+</html>
