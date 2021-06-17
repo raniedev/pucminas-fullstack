@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>File</title>
+        <style>
+            #arquivos {
+                display: none;
+            }
+
+            #btnArquivos {
+                background-color: #fff;
+                transition: 0.3s ease-out;
+                padding: 10px;
+                border: 2px solid blueviolet;
+                color: blueviolet;
+                font-weight: bold;
+            }
+
+            #btnArquivos:hover {
+                background-color: blueviolet;
+                color: #fff;
+                cursor: pointer;
+                transition: 0.3s ease-in;
+            }
+
+            #btnArquivos:active {
+                background-color: rgb(94, 23, 160);
+                border: 2px solid rgb(170, 86, 248);
+                transition: 0.2 ease-in;
+            }   
+
+        </style>
+        <script>
+            onload = () => {
+                arquivos.onchange = () => {
+                    arqs.innerHTML = Array.from(arquivos.files).map(f=>f.name).join("<br>");
+                    // for(let i = 0; i < arquivos.files.length; i++){
+                    //     arqs.innerHTML += arquivos.files[i].name + "<br>"
+                    // }
+
+                    // Tratamento de texto
+                    let fr = new FileReader();
+                    // fr.readAsText(arquivos.files[0], 'utf-8'); para arquivo .text .txt
+                    fr.readAsDataURL(arquivos.files[0]);
+                    fr.onload = (e) => {
+                        output.innerHTML = e.target.result;
+                        foto.value = e.target.result;
+                        output2.innerHTML = `<img src="${e.target.result}"/>`;
+                    };
+                };
+                btnArquivos.onclick = () => {
+                    arquivos.click();
+                };
+            };
+        </script>
+    </head>
+    
+    <body>
+        <!-- para aceitar todo tipo de imagem, usa-se * em accept="image/*" -->
+        <!-- accept="text/plain" para arquivos de texto .text ou .txt -->
+        <input id="arquivos" multiple type="file"  accept="image/png">
+        <button id="btnArquivos">Escolher Arquivos</button>
+        <input type="hidden" id="foto">
+        <p id="arqs"></p>
+        <p id="output"></p>
+        <p id="output2"></p>
+        <h1>File</h1>
+        <p>A API File permite que o navegador carregue um arquivo para envio ao servidor ou para uso na própria página.</p>
+        <p>Tudo começa com um campo do tipo <em>file</em> que permite carregarmos um ou mais arquivos.</p>
+
+<code><pre>
+    &lt;input type="file" id="arquivo"&gt;
+    &lt;input type="file" id="arquivos" multiple&gt;
+</pre></code>
+
+        <p>Em seguinda, precisamos extrair os nomes dos arquivos informados</p>
+<code><pre>
+    onload = () = {
+        arquivos.onchange = () => {
+            for(let i = 0; i &lt; arquivos.files.length; i++)
+                console.log(arquivos.files[i]);
+        }
+    }
+</pre></code>
+
+        <p>Cada arquivo é um objeto contendo os seguintes atributos: name, type, size, lastModified, ...</p>
+
+        <h2>Estratégia de formação</h2>
+        <p>Uma solução mais elegante para esse campo deve envolver outro elemento que o substitua.</p>
+<code><pre>
+    &lt;input type="file" id="arquivos" multiple style="display: none"/&gt;
+    &lt;button id="botaoArq"&gt;Escolher Arquivos&lt;button&gt;
+    &lt;p id="arqs"&gt;&lt;/p&gt;
+
+    onload = () => {
+        arquivos.onchange = () => {
+            arqs.innerHTML = Array.from(arquivos.files)
+                                  .map((f) => f.name)
+                                  .join('&lt;br/&gt;');
+        }
+        botaoArq.onclick = () => {
+            arquivos.click();
+        }
+    }
+</pre></code>
+
+        <h2>Filtros</h2>
+        <p>É possível selecionar os arquivos por tipo:</p>
+<code><pre>
+        &lt;input type="file" id="imagens" multiple accept="image/*"&gt;
+</pre></code>
+
+        <h2>Tratando arquivos texto</h2>
+        <p>Uma solução mais elegante para esse campo deve envolver outro elemento que o substitua.</p>
+<code><pre>
+    &lt;input type="file" id="arquivo" style="display: none" accpet="text/*"/&gt;
+    &lt;button id="botaoArq"&gt;Escolher arquivo&lt;/button&gt;
+    &lt;p id="output"&gt;
+
+    onload = () => {
+        arquivo.onchange = () => {
+            let fr = new FileReader();
+            fr.readAsText(arquivo.files[0], 'utf-8');
+            fr.onload = function(evento) {
+                output.innerHTML = evento.target.result;
+            }
+        }
+        botaoArq.onclick = () => {
+            arquivo.click();
+        }
+    }
+</pre><code>
+        <h2>FileReader</h2>
+        <p>Outros eventos</p>
+        <ul>
+            <li><strong>onerror</strong><br>erro na carga do arquivo</li>
+            <li><strong>onabort</strong><br>usuário cancela a carga</li>
+            <li><strong>onloadstart</strong><br>carga é iniciada</li>
+            <li><strong>onloadend</strong><br>carga é terminada, com sucesso ou erro</li>
+            <li><strong>onprogress</strong><br>acionado periodicamente enquanto o arquivo é carregado</li>
+        </ul>
+
+        <h2>Tipos de Erros</h2>
+        <ul>
+            <li><strong>NotFoundError</strong><br>arquivo não foi encontrado</li>
+            <li><strong>SecurityError</strong><br>arquivo apresenta risco de segurança para uma aplicação web ou muitas leituras foram feitas do mesmo arquivo</li>
+            <li><strong>NotReadableError</strong><br>problemas no arquivo ou falta de permissão para acessá-lo</li>
+        </ul>
+<pre><code>
+    fr.onerror = function(e) {
+        switch(e.target.error.name) {
+            case 'NotFoundError':
+                alert('Arquivo não foi encontrado');
+                break;
+            case 'SecurityError':
+                alert('Erro de segurança');
+                break;
+            case 'NotReadableError':
+                alert('Não foi possível ler o arquivo');
+                break;
+            default:
+                alert('Erro na leitura do arquivo');
+        }
+    }
+</code></pre>
+    </body>
+</html>
