@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Drag and drop</title>
+        <style>
+            .caixa {
+                width: 50px;
+                height: 50px;
+                background-color: #b9f;
+                border: 2px solid black;
+            }
+
+            .zona {
+                float: left;
+                margin-right: 1em;
+                width: 100px;
+                height: 100px;
+                border: thick dashed;
+                padding: 6px;
+                margin-bottom: 14px;
+            }
+
+            div + p {
+                clear: both;
+            }
+
+            .red {
+                border-color: #f33;
+            }
+
+            .blue {
+                border-color: #33f;
+            }
+
+            .black {
+                background-color: black;
+            }
+
+            .zona-over {
+                opacity: 0.5;
+            }
+        </style>
+        <script>
+            onload = () => {
+                caixa.ondragstart = (e) => {
+                    e.dataTransfer.setData('text/plain', caixa.id);
+                    caixa.classList.add('black');            
+                };
+
+                caixa.ondragend = (e) => {
+                    caixa.classList.remove('black');
+                };
+
+                for(const z of document.querySelectorAll('.zona')) {
+                    z.ondragover = (e) => {
+                        e.preventDefault();
+                        z.classList.add('zona-over');
+                    };
+
+                    z.ondragleave = (e) => {
+                        e.preventDefault();
+                        z.classList.remove('zona-over');
+                    };
+
+                    // z.ondrop = (e) => {
+                    //     e.preventDefault();
+                    //     let idCaixa = e.dataTransfer.getData('text/plain');
+                    //     const elem = document.getElementById(idCaixa);
+                    //     z.appendChild(elem);
+                    //     z.classList.remove('zona-over');
+                    // };
+
+                    z.ondrop = (e) => {
+                        e.preventDefault();
+                        let arquivos = e.dataTransfer.files;
+                        console.log(Array.from(arquivos).map(f => f.name).join('\n'));
+                    };
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <h1>Drag and drop</h1>
+        <div id="zona1" class="zona red">
+            <div id="caixa" class="caixa" draggable="true">
+            </div>
+        </div>
+        <div id="zona2" class="zona blue">
+        </div>
+        <p>Nós podemos arrastar qualquer tipo de objeto pela tela. Para isso, ele precisa ter o atributo <strong>draggable</strong>:</p>
+<code><pre>
+    &lt;div id="caixa" class="caixa" draggable="true"&gt;&lt;/div&gt;
+</pre></code>
+
+        <p>Vamos formatá-lo da seguinte forma:</p>
+<code><pre>
+    .caixa {
+        width: 50px;
+        height: 50px;
+        background: #b9f;
+        border: 2px solid black;
+    }
+</pre></code>
+        <h2>Zonas</h2>
+        <p>Vamos também deixar duas zonas prontas para o arraste do objeto:</p>
+<code><pre>
+    &lt;div id="zona1" class="zona red"&gt;&lt;/div&gt;
+    &lt;div id="zona2" class="zona blue"&gt;&lt;/div&gt;
+</pre></code>
+        <p>e com a seguinte formatação:</p>
+<code><pre>
+    .zona {
+        float: left;
+        margin-right: 2em;
+        border: thick dashed;
+        width: 100px;
+        height: 100px;
+    }
+
+    .zona-over {
+        opacity: 0.5;
+    }
+
+    .red {
+        border-color: #f33;
+    }
+
+    .blue {
+        border-color: #33f;
+    }
+</pre></code>
+        <h2>Arraste</h2>
+        <p>O evento do arraste é o <strong>dragstart</strong>.</p>
+<pre><code>
+    onload = () => {
+        caixa.ondragstart = (e) => {
+            console.log(e);
+        }
+    }
+</pre></code>
+        <p>A informação que nos interessa no evento é o objeto <strong>dataTransfer</strong>.</p>
+
+        <h2>Dados</h2>
+        <p>Nós precisamos identificar o elemento que será transferido e qual é o seu tipo.</p>
+<code><pre>
+    caixa.ondragstart = (e) => {
+        e.dataTransfer.setData("text/plain", caixa.id);
+    }
+</pre></code>
+        <p>Para a maioria dos elementos HTML, o tipo <strong>text/plain</strong> será suficiente. Mas podemos arrastar objetos de outros tipos, como as imagens.</p>
+
+        <h2>Zonas</h2>
+        <p>Agora precisamos criar os eventos das zonas. O primeiro deles é quando o objeto está sobre essa zona.</p>
+<code><pre>
+    for(const z of document.querySelectorAll('.zona')) {
+        z.ondragover = (e) => console.log(z.id);
+    }
+</pre></code>
+        <p>E o evento final para soltar o objeto</p>
+<code><pre>
+    for(const z of document.querySelectorAll('.zona')) {
+        ...
+        z.ondrop = (e) => {
+            e.preventDefault();
+            const id = e.dataTransfer.getData('text/plain');
+            const elem = document.getElemenetById(id);
+            z.appendChild(elem);
+            z.classList.remove('zona-over');
+        }
+    }
+</pre></code>
+        <h2>Eventos</h2>
+        <p>A lista completa de eventos é:</p>
+        <p>Para o elemento sendo arrastado:</p>
+        <ul>
+            <li><strong>dragstart</strong></li>
+            <li><strong>drag</strong></li>
+            <li><strong>dragend</strong></li>
+        </ul>
+        <p>Para as zonas de soltura:</p>
+        <ul>
+            <li><strong>dragenter</strong></li>
+            <li><strong>dragover</strong></li>
+            <li><strong>dragleave</strong></li>
+            <li><strong>drop</strong></li>
+        </ul>
+
+        <h2>Arquivos</h2>
+        <p>O objeto <strong>dataTransfer</strong> tem uma propriedade <strong>files</strong> que automaticamente identifica os arquivos arrastados.</p>
+<code><pre>
+    z.ondrop = (e) => {
+        e.preventDefault();
+        console.log(Array.from(e.dataTransfer.files)).map(f => f.name).join('\n');
+    }
+</pre></code>
+    </body>
+</html>
