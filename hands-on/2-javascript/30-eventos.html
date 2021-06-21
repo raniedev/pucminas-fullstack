@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Eventos</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <style>
+            body {
+                font-family: 'Courier New', Courier, monospace;
+            }
+            
+            span {
+                color: royalblue;
+            }
+
+            table {
+                border-collapse: collapse;
+            }
+
+            td, th {
+                border: 1px dashed black;
+                padding: 10px;
+            }
+
+            th {
+                background-color: royalblue;
+                color: #fff;
+            }
+
+            .alerta {
+                background-color: crimson;
+                color: #fff;
+            }
+        </style>
+        <script>
+            $(document).ready(function(){
+                // $('p').hover(() => {
+                //     $('div p').toggleClass('alerta');
+                // });
+
+                //NÃO USAR FUNÇÃO DE SETA, SE NÃO O this NÃO IRÁ FUNCIONAR
+                // $('p').hover(function () {
+                //     $(this).toggleClass('alerta');
+                // });
+
+                $('p').on('click', function() {
+                    $(this).toggleClass('alerta');
+                });
+
+                $('#btn').click(function(e){
+                    e.stopPropagation();
+                    // $('#p1').off('click');
+                    $('#p1').trigger('click');
+
+                });
+
+                // funciona 1x apenas
+                // $('p').one('click', function() {
+                //     $(this).toggleClass('alerta');
+                // });
+
+                $('p').on('logou', function(e, d) {
+                    $(this).toggleClass('alerta');
+                    console.log(e);
+                    console.log('Logou como: ' + d.usuario);
+                });
+
+                $('#btn2').click(function(e){
+                    e.stopPropagation();
+                    $('#p2').trigger('logou', { usuario: 'Alexandre'});
+
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div>
+            <p id="p1">Primeiro parágrafo</p>
+        </div>
+        <p id="p2">Segundo parágrafo</p>
+        <p id="p3">Terceiro parágrafo</p>
+
+
+        <button id="btn">Remover</button>
+        <button id="btn2">Evento próprio</button>
+
+        <h1>Eventos</h1>
+        <p>jQuery também oferece uma alternativa à criação de eventos. No entanto, é importante saber que o evento não é criado diretamente sobre o element HTML, mas sobre o conjunto resposta da seleção.</p>
+        <code>$('#botao').click(() => alert('Olá mundo'));</code>
+        <p>jQuery permite o tratamento de todos os eventos JavaScript, como, por exemplo:</p>
+        <ul>
+            <li><strong>click()</strong><br>clique do mouse</li>
+            <li><strong>dblclick()</strong><br>duplo clique</li>
+            <li><strong>hover()</strong><br>entrada (e saída) do ponteiro do mouse sobre elementos</li>
+            <li><strong>mousemove()</strong><br>movimento do mouse</li>
+            <li><strong>change()</strong><br>alteração do valor do campo</li>
+            <li><strong>focus()</strong><br>foco atribuído ao campo</li>
+            <li><strong>keydown()</strong><br>tecla pressionada no campo</li>
+            <li><strong>submit()</strong><br>formulário enviado</li>
+            <li><strong>etc...</strong></li>
+        </ul>
+
+        <h2>Eventos especiais</h2>
+        <ul>
+            <li><strong>on(<span>evento</span>, <span>[seletor]</span>, <span>[dados]</span>, <span>função</span>)</strong><br>Associa uma função a um evento para os elementos desta seleção. Opcionalmente, a função pode ser associada a um descendente. Os dados também são opcionais;</li>
+            <li><strong>off(<span>evento</span>)</strong><br>Remove o tratamento de um evento de um elemento;</li>
+            <li><strong>one(<span>evento</span>, <span>[dados]</span>, <span>função</span>)</strong><br>semelhante ao on(), mas que só é executado uma única vez</li>
+            <li><strong>trigger(<span>evento</span>, <span>[dados]</span>)</strong><br>força a execução de um determinado evento de algum elemento</li>
+        </ul>
+
+        <h2>O objeto evento</h2>
+        <p>A função do evento recebe um objeto com vários dados, como esses:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Função</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>type</td>
+                    <td>tipo de evento (p.ex., 'click')</td>
+                </tr>
+                <tr>
+                    <td>target</td>
+                    <td>elemento que disparou o evento</td>
+                </tr>
+                <tr>
+                    <td>data </td>
+                    <td>dados passados para função que tratará o evento</td>
+                </tr>
+                <tr>
+                    <td>pageX, pageY</td>
+                    <td>coordenadas do mouse quando o evento foi disparado</td>
+                </tr>
+                <tr>
+                    <td>timeStamp</td>
+                    <td>momento em que o evento ocorreu</td>
+                </tr>
+                <tr>
+                    <td>preventDefault()</td>
+                    <td>evita que o navegador executa a ação padrão</td>
+                </tr>
+                <tr>
+                    <td>stopPropagation()</td>
+                    <td>evita a propagação do evento para os elementos ancestrais</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
