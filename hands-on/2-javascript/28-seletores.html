@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Seletores</title>
+        <style>
+            table{
+                border-collapse: collapse;
+                width: 50%;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 10px;
+            }
+
+            th {
+                color: #fff;
+                background-color: midnightblue;
+            }
+
+            tr td:first-child {
+                font-style: italic;
+                color: midnightblue;
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function(){
+                $('*').css('font-family', 'Courier New, Courier, monospace');
+                $('p').css('padding', '10px');
+                $('#p1').css('background-color', 'crimson');
+                $('.parag').css('color', 'orange');
+                $('div > a').hover(function(){
+                    $(this).css('color', 'green');
+                    $(this).css('font-weight', 'bold');
+                    $(this).css('font-size', '20px');
+                    $(this).css('transition', 'ease-in 0.5s');
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div>
+            <p id="p1" class="parag">Primeiro Parágrafo</p>
+        </div>
+        <div>
+            <p id="p2" class="parag">Segundo Parágrafo</p>
+            <p id="p3">Terceiro Parágrafo</p>
+            <a href="#">Link.com.br</a>
+        </div>  
+
+        <h1>Seletores</h1>
+        <p>jQuery oferece uma série de funções que facilitam a leitura e a manipulação dos elementos <strong>selecionados</strong> da página.</p>
+        <p>Os seletores não retornam os elementos HTML da página, mas um conjunto de objetos da própria jQuery que atendam aos critérios dos seletores. Esses critérios são os mesmos da CSS.</p>
+<pre><code>
+$('#ola').click() => alert("Olá mundo!"));
+...
+&lt;button id="ola"&gt;Olá mundo.&lt;/button&gt;
+</code></pre>
+        <h2>Comparação entre JavaScript e jQuery</h2>
+        <h2>JavaScript</h2>
+        <ul>
+            <li><code>document.getElementById('lista1')</code></li>
+            <li><code>document.querySelector('header &lt; h1')</code></li>
+            <li><code>document.getElementByTagName('p')</code></li>
+            <li><code>document.getElementById('botao').addEventListener('click', ()=>alert("Olá mundo!"))</code></li>
+        </ul>
+
+        <h2>jQuery</h2>
+        <ul>
+            <li><code>$('#lista1')</code></li>
+            <li><code>$('header > h1')</code></li>
+            <li><code>$('p')</code></li>
+            <li><code>$('#botao').click(()=>alert("Olá mundo!"))</code></li>
+        </ul>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Seletor</th>
+                    <th>Aplicação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>*</td>
+                    <td>Seleciona todos os elementos</td>
+                </tr>
+                <tr>
+                    <td>element</td>
+                    <td>Seleciona os elementos específicos</td>
+                </tr>
+                <tr>
+                    <td>anc desc</td>
+                    <td>Seleciona os descendentes especificados de um elemento (ancestral e descendentes)</td>
+                </tr>
+                <tr>
+                    <td>parent > child</td>
+                    <td>Seleciona um elemento com o determinado identificador</td>
+                </tr>
+                <tr>
+                    <td>#id</td>
+                    <td>Seleciona um elemento com o determinado identificador</td>
+                </tr>
+                <tr>
+                    <td>class</td>
+                    <td>Seleciona os elementos de uma determinada classe</td>
+                </tr>
+                <tr>
+                    <td>element.class</td>
+                    <td>Seleciona os elementos especificados de uma dada classe</td>
+                </tr>
+                <tr>
+                    <td>prev + next</td>
+                    <td>Seleciona os elementos especificados que são precedidos por um determinado elemento, e que tenham o mesmo pai</td>
+                </tr>
+                <tr>
+                    <td>prev ~ siblings</td>
+                    <td>Seleciona os elementos especificados que são precedidos por um determinado elemento, e que tenham o mesmo pai</td>
+                </tr>
+                <tr>
+                    <td>e1, e2, e3</td>
+                    <td>Seleciona os elementos especificados</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Seletores de formulários</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Seletor</th>
+                    <th>Aplicação</th>
+                    <tbody>
+                        <tr>
+                            <td>:input</td>
+                            <td>Seleciona os elementos input, select, textarea e button</td>
+                        </tr>
+                        <tr>
+                            <td>:text</td>
+                            <td>Seleciona os campos do tipo text</td>
+                        </tr>
+                        <tr>
+                            <td>:password</td>
+                            <td>Seleciona os campos do tipo password</td>
+                        </tr>
+                        <tr>
+                            <td>:radio</td>
+                            <td>Seleciona os campos do tipo radio</td>
+                        </tr>
+                        <tr>
+                            <td>:checkbox</td>
+                            <td>Seleciona os campos do tipo checkbox</td>
+                        </tr>
+                        <tr>
+                            <td>:submit</td>
+                            <td>Seleciona os campos do tipo submit</td>
+                        </tr>
+                        <tr>
+                            <td>:reset</td>
+                            <td>Seleciona os campos do tipo reset</td>
+                        </tr>
+                        <tr>
+                            <td>:image</td>
+                            <td>Seleciona os campos do tipo image</td>
+                        </tr>
+                        <tr>
+                            <td>:button</td>
+                            <td>Seleciona os campos do tipo button</td>
+                        </tr>
+                        <tr>
+                            <td>:file</td>
+                            <td>Seleciona os campos do tipo file</td>
+                        </tr>
+                    </tbody>
+                </tr>
+            </thead>
+        </table>
+    </body>
+</html>
