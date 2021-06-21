@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Canvas</title>
+    </head>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .desenho {
+            border: thin solid black;
+            width: 300px;
+            height: 150px;
+        }
+    </style>
+    <script>
+        onload = () => {
+            if(desenho.getContext){
+                let ctx = desenho.getContext('2d');
+                ctx.fillRect(25, 25, 100, 100);
+                ctx.clearRect(45, 45, 60, 60);
+                ctx.strokeRect(50, 50, 50, 50);
+            }
+
+            if(desenho2.getContext){
+                let ctx = desenho2.getContext('2d');
+                ctx.beginPath();
+                ctx.moveTo(75, 50);
+                ctx.lineTo(100, 75);
+                ctx.lineTo(100, 25);
+                ctx.fill();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(300, 150);
+                ctx.moveTo(300, 0);
+                ctx.lineTo(0, 150);
+                ctx.stroke();
+            }
+
+            if(desenho3.getContext){
+                let ctx = desenho3.getContext('2d');
+                ctx.beginPath();
+                ctx.arc(75, 75, 50, 0, 2 * Math.PI)
+                ctx.stroke();
+                ctx.fill();
+            }
+
+            if(desenho4.getContext){
+                let ctx = desenho4.getContext('2d');
+                ctx.beginPath();
+                ctx.moveTo(75, 40);
+                ctx.bezierCurveTo(75, 37, 70, 25, 50, 25);
+                ctx.bezierCurveTo(20, 25, 20, 62.5, 20, 62.5);
+                ctx.bezierCurveTo(20, 80, 40, 102, 75, 120);
+                ctx.bezierCurveTo(110, 102, 130, 80, 130, 62.5);
+                ctx.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
+                ctx.bezierCurveTo(85, 25, 75, 37, 75, 40);
+                ctx.stroke();
+                ctx.fill();
+            }
+
+            if(desenho5.getContext){
+                let ctx = desenho5.getContext('2d');
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = 'black';
+                ctx.fillStyle = 'red';
+                ctx.beginPath();
+                ctx.arc(75, 75, 50, 0, 2 * Math.PI);
+                ctx.stroke();
+                ctx.fill();
+            }
+        }
+    </script>
+    <body>
+        <h1>Canvas</h1>
+        <p>A api canvas transforma a página em uma área em que podemos desenhar livremente.</p>
+        <p>Esse desenho pode ser feito por meio de funções básicas 2d ou 3d, como os círculos, retângulos, linhas poligonais e muito mais.</p>
+        <h1>JavaScript</h1>
+        <p>O retângulo é um das formas básicas da API</p>
+        <ul>
+            <li><strong>fillRect(x,y,width,height)</strong><br>desenha um retângulo preenchido</li>
+            <li><strong>clearRect(x,y,width,height)</strong><br>limpa uma área (preto transparente)</li>
+            <li><strong>strokeRect(x,y,width,height)</strong><br>desenha o contorno de um retângulo</li>
+        </ul>
+        <canvas id="desenho" class="desenho">
+            Seu navegador não suporta Canvas.
+        </canvas>
+
+        <h2>Caminhos (path)</h2>
+        <p>O caminho é a segunda forma básica da API</p>
+        <p>O desenho é feito a partir do rastro do cursor</p>
+        <p>O controle do caminho pode ser feito com as funções:</p>
+        <ul>
+            <li><strong>beginPath()</strong> - inicia um novo caminho;</li>
+            <li><strong>closePath()</strong> - conecta o ponto atual ao início</li>
+            <li><strong>moveTo()</strong> - move o ponto sem traçar</li>
+            <li><strong>stroke()</strong> - colore a linha</li>
+            <li><strong>fill()</strong> - enche a área do caminho</li>
+        </ul>
+        <canvas id="desenho2" class="desenho">
+            Seu navegador não suporta Canvas.
+        </canvas>
+        <p>Outras formas para desenho:</p>
+        <ul>
+            <li>linhas lineTo(x, y)</li>
+            <li>arcos arc(x, y, raio, angulo_inicial, angulo_final, antihorario?)</li>
+            <li>curva quadrática quadraticCurveTo(ctr_x, ctr_y, x, y)</li>
+            <li>curva de bézier bezierCurveTo(ctr1x, ctr1y, ctr2x, ctr2y, x, y)</li>
+        </ul>
+        <canvas id="desenho3" class="desenho">
+            Seu navegador não suporta Canvas.
+        </canvas>
+
+        <p>Exemplo de curva de Bézier</p>
+        <canvas id="desenho4" class="desenho">
+            Seu navegador não suporta Canvas.
+        </canvas>
+
+        <h2>Cores</h2>
+        <p>Propriedades do contexto</p>
+        <ul>
+            <li><strong>fillStyle</strong> - cor de preenchimento</li>
+            <li><strong>strokeStyle</strong> - cor do traço</li>
+            <li><strong>globalAlpha</strong> - opacidade (de 0.0 a 1.0)</li>
+        </ul>
+
+        <p>Valores de cores</p>
+        <ul>
+            <li>orange, black, green etc.</li>
+            <li>#ffa500</li>
+            <li>rgb(255, 165, 0)</li>
+            <li>rgba(255, 165, 0, 0.5)</li>
+        </ul>
+
+        <h2>Estilos de linha</h2>
+        <p>Propriedades do contexto</p>
+        <ul>
+            <li><strong>lineWidth</strong> espessura da linhas</li>
+            <li><strong>lineCap</strong> tipo de ponta (butt, round ou square)</li>
+        </ul>
+
+        <ul>
+            <li><strong>lineJoin</strong><br> tipo de junção (<strong>round</strong>, <strong>bevel</strong>, <strong>miter</strong>)</li>
+            <li><strong>miterLimit</strong><br>limite da distância da conexão dos pontos externos da linha à conexão dos pontos internos com a junção do tipo <strong>miter</strong>(as pontas das conexões podem ficar maiores ou menores)</li>
+        </ul>
+
+        <canvas id="desenho5" class="desenho">
+            Seu navegador não suporta Canvas.
+        </canvas>
+    </body>
+</html>
