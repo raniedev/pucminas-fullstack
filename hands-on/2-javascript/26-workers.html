@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Workers</title>
+        <script>
+            let wk = new Worker('js/somar.js');
+            
+            wk.postMessage([5, 3]);
+
+            wk.onmessage = function(evento) {
+                console.log(evento.data)
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Web Worker</h1>
+        <p>Um worker é umn script executado em segundo plano, paralelamente ao código principal.</p>
+        <p>Os workers são usados para operações lentas ou que precisem monitorar algum processo. Assim, o navegador não fica travado.</p>
+
+        <p>O código do worker pode ser carregado a partir de um arquivo específico.</p>
+        <code>let wk = new Worker('somar.js')</code>
+
+        <p>A partir daí, esse worker fica aguardando alguma solicitação do script principal.</p>
+
+<pre><code>onmessage = function(evento) {
+    let soma = e.data[0] + e.data[1]; // os dados, de qualquer tipo são recebidos por meio do objeto evento.data
+    postMessage(soma); //envia mensagem para o script principal
+}</pre></code>
+
+        <h2>Script Principal</h2>
+        <p>O script principal usa a mesma estrutura, só que com uma referência explícita ao worker:</p>
+        <code>wk.postMessage([2, 3]);</code>
+
+        <p>Em seguida, fica esperando uma resposta desse worker.</p>
+
+<pre><code>wk.onmessage = function(evento) {
+    console.log(evento.data);
+}</code></pre>
+    </body>
+</html>
