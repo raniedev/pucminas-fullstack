@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>jQuery</title>
+        <style>
+            body{
+                font-family: 'Courier New', Courier, monospace;
+            }
+
+            table {
+                border-collapse: separate;
+                border-spacing: 10px 0px;
+                table-layout: fixed;
+                width: 60%;
+            }
+
+            th {
+                color: #fff;
+                padding: 10px;
+            }
+
+            td {
+                background-color: #eee;
+                padding: 4px 10px;
+                width: calc(100%/4);
+            }
+
+            .bc-brown {
+                background-color: brown;
+            }
+
+            .bc-forestgreen {
+                background-color: forestgreen;
+            }
+
+            .bc-dodgerblue {
+                background-color: dodgerblue;
+            }
+
+            .bc-limegreen {
+                background-color: limegreen;
+            }
+
+            .bc-goldenrod {
+                background-color: goldenrod;
+            }
+
+            .bc-crimson {
+                background-color: crimson;
+            }
+
+            .bc-midnightblue {
+                background-color: midnightblue;
+            }
+
+            .bc-slateblue {
+                background-color: slateblue;
+            }
+
+            a:visited {
+                color: blue;
+            }
+
+            a:active {
+                color: crimson;
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+        <script>
+            $(document).ready(function(){
+                $('#btn').click(function(){
+                    alert('clicou');
+                });
+            });
+
+            // JavaScript nativo, faz a mesma coisa que o código jQuery, ES6 de 2015 deu essa evolução na linguagem
+            // onload = () => {
+            //     btn.onclick = () => alert('clicou');
+            // }
+        </script>
+    </head>
+    <body>
+        <button id="btn">Clique aqui</button>
+        <h1>jQuery</h1>
+        <p>jQuery é uma biblioteca JavaScript que simplifca o percurso de um documento HTML, o gerenciamento de eventos, as animações e as interações Ajax para o desenvolvimento rápido de alicações Web.</p>
+
+        <h2>Vantagens</h2>
+        <ul>
+            <li>Acelera o processo de desenvolvimento</li>
+            <li>Operações que exigiram vários comandos são simplificadas</li>
+            <li>É compatível com todos os navegadores (I)*</li>
+            <li>É extensível através de plugins (II)*</li>
+        </ul>
+        <small><a href="https://jquery.com/browser-support/" target="_blank">I - Checar compatibilidade</a></small><br>
+        <small><a href="https://plugins.jquery.com/" target="_blank">II - Checar plugins</a></small>
+
+        <h2>Instalação</h2>
+        <ul>
+            <li>jQuery pode ser usada de duas formas:</li>
+            <li>Por meio de um arquivo jquery-X.X.X.min,js instalado localmente. Os arquivos podem ser baixados em <a href="https://jquery.com/download/" target="_blank">link</a></li>
+            <li>Poder meio do CDN, cujos arquvios podem ser encontrados em <a href="https://code.jquery.com/" target="_blank">link</a></li>
+            <li>Cada arquivo possui uma versão X.X.X específica.</li>
+            <li>O código deve ser usado na sua versão minificada (compactada).</li>
+        </ul>
+
+        <h2>Exemplo de uso</h2>
+<pre><code>$(document).ready(function(){
+    $('a').click(function(evento){
+        alert('O link não funciona mais.');
+        evento.preventDefault();
+    });
+});</pre></code>
+
+        <h2>Funcionalidades da jQuery</h2>
+        <table>
+            <tr>
+                <th class="bc-brown">Núcleo básico</th>
+                <th class="bc-forestgreen">Seleção e percurso</th>
+                <th class="bc-dodgerblue">HTML e CSS</th>
+                <th class="bc-limegreen">Eventos</th>
+            </tr>
+            <tr>
+                <td>Funções para localização de conteúdo e para navegação entre eles.</td>
+                <td>Funções para localização de conteúdo e para navegação entre eles.</td>
+                <td>Funções para edição e alteração de conteúdo e de formatação.</td>
+                <td>Funções para gerenciamento de eventos de interface.</td>
+            </tr>
+            <tr>
+                <th class="bc-goldenrod">Efeitos</th>
+                <th class="bc-crimson">Ajax</th>
+                <th class="bc-midnightblue">U.I.</th>
+                <th class="bc-slateblue">Extensibilidade</th>
+            </tr>
+            <tr>
+                <td>Funções para animações básicas.</td>
+                <td>Funções para acesso assíncrono a dados e para manipulação de objetos JSON.</td>
+                <td>Plugin para controles avançados de interface.</td>
+                <td>Base para a construção de plugins.</td>
+            </tr>
+        </table>
+    </body>
+</html>
