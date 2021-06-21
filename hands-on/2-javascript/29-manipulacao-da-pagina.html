@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Manipulação da Página</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <style>
+            body {
+                font-family: 'Courier New', Courier, monospace;
+            }
+
+            .alerta {
+                padding: 0 10px;
+                color: crimson;
+                border: 2px dashed crimson;
+            }
+        </style>
+        <script>
+            $(document).ready(function(){
+                $('div span').html('<strong>Novo parágrafo</strong>');//inserindo um conteúdo novo no HTML
+                $('div p').text('<strong>Novo parágrafo</strong>');//inserindo um texto documento, as tags são ignoradas
+                console.log($('div span').html());//recebe com as tags
+                console.log($('div span').text());//remove as tags
+
+                //alterar id
+                $('div p').attr('class', 'gamma');
+
+                //adicioanando atributos que não fazem sentido na HTML mas podem ser inseridos e depois recuperados através do jQuery
+                $('div p').attr({'altura': 10, 'largura': 50});
+                console.log($('div p').attr('altura'));
+                //personazile seus atributos pessoais prefixando com data- (por exemplo: 'data-altura')
+
+
+                //para passar mais de um atributo css, usa-se notação de objeto
+                $('#alpha').css({'color': 'royalblue', 'font-weight': 'bold', 'background-color': '#ccc', 'padding': '10px'});
+
+                console.log($('h1').length);
+                console.log($('h2').length);
+
+                //Aplicar classe
+                $('span p strong').addClass('alerta');
+
+                $('#btn').click(() => {
+                    $('div ul li:first-child').addClass('alerta');
+                    $('span p strong').removeClass('alerta');
+                });
+
+                $('#btn2').click(() => {
+                    $('span p strong').toggleClass('alerta');
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div>
+            <span id="alpha">teste</span>
+            <p class="beta">teste</p>
+        </div>
+        <span>
+            <p>Delta: <strong>δΔ</strong></p>
+        </span>
+        <div>
+            <ul>
+                <li>Item 1</li>
+                <li>Item 2</li>
+            </ul>
+        </div>
+        <button id="btn">removeClass</button>
+        <button id="btn2">ToggleClass</button>
+        <h1>Manipulação da Página</h1>
+        <h2>Alteração do conteúdo</h2>
+        <p>Uma das principais operações que fazemos com jQuery é a alteração da página, seja do seu conteúdo, da sua formatação ou do seu comportamento.</p>
+        <ul>
+            <li><strong>html()</strong><br>Retorna o conteúdo HTML do primeiro elemento do conjunto</li>
+            <li><strong>html(novo conteúdo)</strong><br>Define o conteúdo HTML de cada elemento do conjunto</li>
+            <li><strong>text()</strong><br>Retorna o conteúdo textual do primeiro elemento do conjunto</li>
+            <li><strong>text(novo texto)</strong><br>Define o conteúdo textual de cada elemento do conjunto</li>
+        </ul>
+
+        <h2>Acesso aos atributos</h2>
+        <ul>
+            <li><strong>attr(nome)</strong><br>Recupera o valor de um atributo. Se não existir, retorna <strong>undefined</strong></li>
+            <li><strong>attr(nome, valor)</strong><br>Atribui o valor ao atributo nome</li>
+            <li><strong>attr(propriedades)</strong><br>Define uma série de atributos para o conjunto de elementos usando a notação de objetos(pares de nomes e valores dos atributos)</li>
+            <li><strong>attr(nome, fn)</strong><br>Define uma função para calcular o valor do atributo nome em cada elemento do conjunto</li>
+            <li><strong>removeAttr(nome)</strong><br>Remove o atributo nome de cada elemento do conjunto</li>
+        </ul>
+
+        <h2>Formatação</h2>
+        <ul>
+            <li><strong>css(propriedade)</strong><br>Retorna o valor da propriedade CSS do primeiro elemento do conjunto</li>
+            <li><strong>css(propriedade, valor)</strong><br>Define o valor da propriedade CSS para todos os elementos do conjunto</li>
+            <li><strong>css(propriedades)</strong><br>Define várias propriedades para os elementos conjunto usando a notação de objetos(pares de nomes e valores das propridades CSS)</li>
+        </ul>
+
+        <h2>Manipulação de Classes</h2>
+        <ul>
+            <li><strong>addClass(classe)</strong><br>Adiciona uma ou mais classes a cada elemento do conjunto</li>
+            <li><strong>hasClass(classe)</strong><br>Informa se a(s) classe(s) está(ão) presente(s) em pelo menos um elemento do conjunto</li>
+            <li><strong>removeClass(classe)</strong><br>Remove a(s) classe(s) dos elementos do conjunto</li>
+            <li><strong>toggleClass(classe)</strong><br>Adiciona a classe se não estiver presente, remove se estiver</li>
+            <li><strong>toggleClass(classe, booleano)</strong><br>Adiciona a classe se o valor for verdadeiro, remove se o valor for falso</li>
+        </ul>
+    </body>
+</html>
