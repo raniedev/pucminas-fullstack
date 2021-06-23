@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>D3JS</title>
+        <style>
+            body {
+                font-family: 'Courier New', Courier, monospace;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>D3JS</h1>
+        <h2>Instalação</h2>
+        <code>&lt;script src="https://d3js.org/d3.v6.min.js"&gt;&lt;/script&gt;</code>
+        <p>Alguns scripts adicionais podem ser necessários para funcionalidades especiais.</p>
+        <h2>Seleções</h2>
+        <p>Para selecionarmos elementos, podemos usar os seguintes métodos:</p>
+        <ul>
+            <li>d3.select()</li>
+            <li>d3.selectAll()</li>
+        </ul>
+
+        &lt;p id="destaque"&gt;Parágrafo em destaque&lt;/p&gt;
+        &lt;p&gt;Segundo parágrafo&lt;/&gt;
+        &lt;p&gt;Terceiro parágrafo&lt;/&gt;
+<code><pre>d3.selectAll('p').style('background-color', 'lightblue');
+d3.select('#destaque').style('font-weight', 'bold')
+                      .style('font-size', 'large');</pre></code>
+        
+        <h2>Edição de documento</h2>
+        <ul>
+            <li>selection.attr(nome, [valor]) define ou recupera um atributo</li>
+            <li>selection.claased(nomes, [valor]) adiciona, recupera ou remove classes CSS separadas por espaços. O valor pode ser true ou false</li>
+            <li>selection.style(nome, [valor]) define ou recupera uma propriedade de estilo</li>
+            <li>selection.property(nome,[valor]) define ou recupera uma propriedade da seleção (ex.: value, checked, ...)</li>
+            <li>selection.text([valor]) define ou recupera o conteúdo textual</li>
+            <li>selection.html([valor]) define ou recupera o conteúdo HTML interno</li>
+            <li>selection.append(tipo) adiciona um novo elemento desse tipo como último filho de cada element da seleção</li>
+            <li>selection.insert(tipo, [seletor]) insere um novo elemento desse tipo antes do primeiro filho que atenda ao seletor, para cada elemento selecionado</li>
+            <li>selection.remove() remove os elementos selecionados do documento</li>
+        </ul>
+
+        <h2>Edição do documento</h2>
+<code><pre>&lt;div&gt;
+    &lt;p id="destaque"&gt;Parágrafo em destaque&lt;/p&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    &lt;p&gt;Segundo Parágrafo&lt;/p&gt;
+    &lt;p&gt;Terceiro Parágrafo&lt;/p&gt;
+&lt;/div&gt;</pre></code>        
+        <code>d3.selectAll('div').style('background-color', 'lightblue').append('p').html('exemplo');</code>
+
+        <h2>Reordenação dos elementos</h2>
+        <ul>
+            <li>selection.sort(fn) ordena os elementos no documento de acordo om os seus dados</li>
+            <li>selection.order() reordena os elementos selecionados</li>
+            <li>selection.raise() reordena cada elemento selecionado como o último filho de seu pai</li>
+            <li>selection.lower() reordena cada elemento selecionado como o primeiro filho de seu pai</li>
+        </ul>
+
+        <h2>Associação de dados</h2>
+        <p>Nós podemos associar a dados aos elementos selecionados por meio do método data()</p>
+        <code>d3.selectAll('p').data([10, 20, 30,]);</code>
+        <p>Os valores são registrados na propriedade __data__ dos elementos</p>
+<code><pre>
+&lt;p&gt;Primeiro Parágrafo&lt;/p&gt;
+&lt;p&gt;Segundo Parágrafo&lt;/p&gt;
+&lt;p&gt;Terceiro Parágrafo&lt;/p&gt;
+
+d3.selectAll('p').data([10, 20, 30]);
+d3.selectAll('p').sort((a, b) => b - a);
+
+document.querySelectorAll('p').forEach((i) => console.log(i.__data__));
+</pre></code>
+        <h2>Usando os dados</h2>
+        <p>Após a aplicação dos dados, eles podem ser recuperados por meio das funções de edição</p>
+<code><pre>
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+div {
+    background-color: lightblue;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+d3.selectAll('div').data([10, 20, 30]).text((d) => d).style('width', (d) => d * 10 + 'px');
+</pre></code>
+
+        <h2>Ajustando os dados aos elementos</h2>
+        <p>Após a aplicação dos dados, eles podem ser recuperados por meio das funções de edição.</p>
+<code><pre>
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+
+let divs = d3.select('body').selectAll('div').data([10, 20, 30, 40, 50]).text((d) => d);
+console.log(divs);
+</code></pre>
+        <p>A adição de elementos pode ser feita assim:</p>
+<code><pre>
+let divs = d3.select('body').selectAll('div').data([10, 20, 30, 40, 50]).text((d) => d);
+divs.enter().append('div').text((d) => d);
+</pre></code>
+        <p>E a remoção da seguinte forma:</p>
+<code><pre>
+let divs = d3.select('body').selectAll('div').data([10]).text((d) => d);
+divs.exit().remove;
+</pre></code>
+    </body>
+</html>
