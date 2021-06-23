@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Filtros</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <style>
             body {
                 font-family: 'Courier New', Courier, monospace;
@@ -23,9 +24,73 @@
                 border: 1px solid black;
                 padding: 10px;
             }
+
+            .alerta {
+                background-color: rgb(31, 19, 21);
+                color: #fff;
+            }
+
+            .borda {
+                border: 2px dashed crimson;
+            }
+
+            .espaco-interno {
+                padding: 10px;
+            }
+
+            .negrito {
+                font-weight: bold;
+            }
+
+            .nova-cor {
+                color: royalblue;
+            }
+
+            .tab {
+                padding-left: 60px;
+            }
+
+            .italico {
+                font-style: italic;
+            }
+
+            .gigante {
+                font-size: xx-large;
+            }
         </style>
+        <script>
+            $(document).ready(function(){
+                $('div p').filter(':even').addClass('alerta');//p dentro de um div que é par
+                $('p').filter('p + p').addClass('borda');//p que precede outro p
+                $('p').eq(2).addClass('espaco-interno');//posição do p passado por parâmetro, começa com 0
+                $('p').has('span').addClass('negrito');//p que tenha span como filho
+                $('p').first().addClass('nova-cor');//primeiro p
+                $('p').last().addClass('tab'); //ultimo p
+                $('p').add('h1').addClass('italico'); //todo p e h1
+
+                //transformação
+                let listaIds = $('p').map(function(){
+                    return $(this).attr('id');
+                }).get();
+                console.log(listaIds.join(', '));
+
+                let listaPs = $('p').map(function(){
+                    return $(this).attr('id');
+                }).get();
+                console.log(listaPs);
+            });
+        </script>
     </head>
     <body>
+        <div>
+            <p id="p1">
+                <span>Primeiro</span> Parágrafo
+            </p>
+            <p id="p2">Segundo Parágrafo</p>
+            <p id="p3">Terceiro Parágrafo</p>
+            <p id="p4">Quarto Parágrafo</p>
+            <p id="p5">Quinto Parágrafo</p>
+        </div>
         <h1>Filtros</h1>
         <p>Um filtro é uma forma de reduzir o conjunto de elementos selecionads àqueles que atendam a uma determinada condição.</p>
 <code><pre>
@@ -84,5 +149,7 @@ let listaIDS = $(':input').map(function(){
 }).get();
 </pre></code>
         <p>Essa função retorna o valor do atributo id de cada elemento, criando um novo vetor de IDs. Finalmente, usamos o método get() para retornar o resultado como um objeto JavaScript comum.</p>
+
+        <p id="pU">Último Parágrafo</p>
     </body>
 </html>
