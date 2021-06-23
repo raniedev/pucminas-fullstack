@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Filtros</title>
+        <style>
+            body {
+                font-family: 'Courier New', Courier, monospace;
+            }
+
+            table {
+                border-collapse: collapse;
+            }
+
+            th {
+                background-color: midnightblue;
+                color: #fff;
+            }
+
+            td, th {
+                border: 1px solid black;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Filtros</h1>
+        <p>Um filtro é uma forma de reduzir o conjunto de elementos selecionads àqueles que atendam a uma determinada condição.</p>
+<code><pre>
+$('tr').filter(':even').css('background-color', 'lightgrey');
+</pre></code>
+        <p>Esse filtro retorna apenas os elementos pares (1 a cada 2) de uma determinar seleção.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Função</th>
+                    <th>Descrição</th>
+                    <tbody>
+                        <tr>
+                            <td>filter()</td>
+                            <td>Reduz o conjunto para aqueles que atendem a um seletor ou passem em uma função de teste</td>
+                        </tr>
+                        <tr>
+                            <td>is()</td>
+                            <td>Testa se pelo menos um objeto atende ao seletor e, nesse caso, retorna verdadeiro</td>
+                        </tr>
+                        <tr>
+                            <td>not()</td>
+                            <td>Elimina do conjunto os elementos que se enquadrem no segundo seletor</td>
+                        </tr>
+                        <tr>
+                            <td>has()</td>
+                            <td>Reduz o conjunto àquele elemento que possuam um determinado descendente</td>
+                        </tr>
+                        <tr>
+                            <td>eq()</td>
+                            <td>Reduz o conjunto para apenas um elemento do índice especificado</td>
+                        </tr>
+                        <tr>
+                            <td>first()</td>
+                            <td>Reduz o conjunto ao seu primeiro elemento</td>
+                        </tr>
+                        <tr>
+                            <td>last()</td>
+                            <td>Reduz o conjunto ao seu último elemento</td>
+                        </tr>
+                        <tr>
+                            <td>slide()</td>
+                            <td>Reduz o conjunto a um subconjunto especificado por uma faixa de índices</td>
+                        </tr>
+                    </tbody>
+                </tr>
+            </thead>
+        </table>
+
+        <h2>Transformação</h2>
+        <p>Também é possível transformarmos um conjunto em outro, por meio do método map()</p>
+<code><pre>
+//Retorna os ids dos elementos selecionados
+let listaIDS = $(':input').map(function(){
+    return $(this).attr('id');
+}).get();
+</pre></code>
+        <p>Essa função retorna o valor do atributo id de cada elemento, criando um novo vetor de IDs. Finalmente, usamos o método get() para retornar o resultado como um objeto JavaScript comum.</p>
+    </body>
+</html>
