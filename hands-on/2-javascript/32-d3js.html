@@ -10,13 +10,53 @@
             body {
                 font-family: 'Courier New', Courier, monospace;
             }
+
+            #grafico div {
+                background-color: lightblue;
+                padding: 5px;
+                margin-bottom: 5px;
+                text-align: right;
+            }
         </style>
         <script>
             onload = () => {
-                d3.selectAll('p').style('background-color', 'lightblue');
+                d3.selectAll('p')
+                  .style('background-color', 'royalblue');
                 d3.select('#destaque')
-                    .style('font-size', 'large')
-                    .style('font-weight', 'bold');
+                  .style('font-size', 'large')
+                  .style('font-weight', 'bold');
+
+                d3.selectAll('h3')
+                  .style('background-color', 'midnightblue')
+                  .style('color', '#fff')
+                  .append('h2')
+                  .html('h2 adicionado via .append()');
+
+                // d3.selectAll('p').data([30, 20, 10]);
+                // console.log(document.querySelectorAll('p').forEach((p) => console.log(p.__data__)));
+
+                // let ps = d3.selectAll('p').data([30, 20, 10]);
+                // ps.sort();
+
+                // let ps2 = d3.selectAll('p').data([10, 20, 30]);
+                // ps2.sort(
+                //     (a, b) => b - a
+                // );
+
+                // d3.selectAll('div').data([10, 20, 30]).text(d => d).style('width', d => d * 10 + 'px');
+                // console.log(d3.selectAll('div'));
+
+                let divs = d3.select('#grafico')
+                            .selectAll('div')
+                            .data([10, 20, 30, 40, 50])
+                            .text((d) => d)
+                            .style('width', (d) => d * 10 + 'px');
+                    divs.enter()
+                        .append('div')
+                        .text((d) => d)
+                        .style('width', (d) => d * 10 + 'px');
+                    // divs.exit().remove();
+
             };
         </script>
     </head>
@@ -24,6 +64,17 @@
         <p id="destaque">Parágrafo em destaque</p>
         <p>Segundo Parágrafo</p>
         <p>Terceiro Parágrafo</p>
+        
+        <!-- <div>
+            <p id="destaque2">Parágrafo em destaque</p>
+        </div>
+        <div>
+            <p>Segundo Parágrafo</p>
+            <p>Terceiro Parágrafo</p>
+        </div> -->
+
+        <h3>H3</h3>
+        <h3>H3</h3>
 
         <h1>D3JS</h1>
         <h2>Instalação</h2>
@@ -124,5 +175,9 @@ divs.enter().append('div').text((d) => d);
 let divs = d3.select('body').selectAll('div').data([10]).text((d) => d);
 divs.exit().remove;
 </pre></code>
+        <h2>Prática</h2>
+        <div id="grafico">
+            
+        </div>
     </body>
 </html>
