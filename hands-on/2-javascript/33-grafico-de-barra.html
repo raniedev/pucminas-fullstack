@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gráfico de Barras</title>
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+        <style>
+            body {
+                font-family: 'Courier New', Courier, monospace;
+            }
+
+            #grafico {
+                border: thin solid black;
+                width: 600px;
+                height: 400px;
+            }
+
+            .barra {
+                fill: lightblue;
+                stroke: black;
+            }
+
+            .rotulo {
+                text-anchor: end;
+            }
+        </style>
+        <script>
+            onload = () => {
+                let dados = [156, 27, 120, 115, 44, 260, 133];
+                let svg = d3.select('#grafico');
+                let largura = parseInt(svg.style('width'));
+                let altura = parseInt(svg.style('height'));
+                let fnX = d3.scaleLinear().domain([0, d3.max(dados)]).range([0, largura]);
+                let fnY = d3.scaleLinear().domain([0, dados.length]).range([0, altura]);
+                svg.selectAll('.barra')
+                    .data(dados)
+                    .enter()
+                    .append('rect')
+                    .classed('barra', true)
+                    .attr('x', 0)
+                    .attr('y', (d, i) => fnY(i))
+                    .attr('width', (d) => fnX(d))
+                    .attr('height', fnY(1) * 0.9);
+
+                svg.selectAll('.rotulo')
+                    .data(dados)
+                    .enter()
+                    .append('text')
+                    .classed('rotulo', true)
+                    .text((d) => d)
+                    .attr('x', (d) => fnX(d))
+                    .attr('dx', -10)
+                    .attr('y', (d, i) => fnY(i))
+                    .attr('dy', (d, i) => fnY(1)/2)
+            };
+        </script>
+    </head>
+    <body>
+        <h1>Gráfico de Barras</h1>
+        <svg id="grafico"></svg>
+    </body>
+</html>
