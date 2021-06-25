@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gráfico de Colunas</title>
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+        <link rel="stylesheet" href="style/grafico.css">
+        <script src="js/grafico.js"></script>
+        <script>
+            onload = () => {
+                let dados = [156, 27, 120, 115, 44, 260, 133];
+                grafico({
+                    seletor: '#grafico',
+                    dados: dados,
+                    largura: 600,
+                    altura: 400
+                });
+            };
+        </script>
+    </head>
+    <body>
+        <h1>Gráfico de Colunas</h1>
+        <svg id="grafico"></svg>
+    </body>
+</html>
