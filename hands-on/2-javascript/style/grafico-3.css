@@ -1,0 +1,28 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#grafico {
+    border: thin solid black;
+    width: 600px;
+    height: 440px;
+}
+
+.barra {
+    /* fill: lightblue; */
+    stroke: black;
+}
+
+.rotulo {
+    text-anchor: end;
+}
+
+#eixoX text {
+    font-size: 120%;
+    text-anchor: end;
+    transform: translate(-8px, 2px) rotate(-45deg);
+}
+
+#eixoY text {
+    font-size: 120%;
+}
