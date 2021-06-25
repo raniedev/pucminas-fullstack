@@ -37,6 +37,9 @@ function grafico(parametros) {
     
     let eixoY = d3.axisLeft(fnY);
     plotagem.append('g').attr('id', 'eixoY').call(eixoY);
+
+    let grade = d3.axisRight(fnY).tickSize(larguraPlotagem).tickFormat('');
+    plotagem.append('g').attr('id', 'grade').call(grade);
     
     svg.append('text')
         .attr('x', margem.esquerda)
