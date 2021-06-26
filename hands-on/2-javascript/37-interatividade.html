@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Interatividade</title>
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+        <link rel="stylesheet" href="style/grafico-4.css">
+        <script src="js/grafico-4.js"></script>
+        <script>
+            const clicado = (d) => alert(d.chave + ' = ' + d.valor);
+            onload = () => {
+                let dados = [
+                    {chave: 'Frango', valor: 56},
+                    {chave: 'Carne', valor: 73},
+                    {chave: 'Vegetariano', valor: 20},
+                    {chave: 'Queijo', valor: 115},
+                    {chave: 'Goiabada', valor: 44},
+                    {chave: 'Banana', valor: 60},
+                    {chave: 'Calabresa', valor: 33}
+                ];
+                let graf = new Grafico({
+                    seletor: '#grafico',
+                    dados: dados,
+                    largura: 600,
+                    altura: 400,
+                    tituloX: 'Tipos de pastéis',
+                    tituloY: 'Quantidade diária',
+                    callback: clicado
+                });
+
+                crescente.onclick = () => {
+                    dados.sort((a, b) => a.valor - b.valor);
+                    graf.atualize(dados);
+                }
+
+                decrescente.onclick = () => {
+                    dados.sort((a, b) => b.valor - a.valor);
+                    graf.atualize(dados);
+                }
+
+                alfabetica.onclick = () => {
+                    dados.sort((a, b) => a.chave.localeCompare(b.chave));
+                    graf.atualize(dados);
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <figure>
+            <figcaption>Vendas médias diárias</figcaption>
+            <svg id="grafico"></svg>
+            <div>
+                <button id="crescente">Ordem Crescente</button>
+                <button id="decrescente">Ordem Decrescente</button>
+                <button id="alfabetica">Alfabética</button>
+            </div>
+        </figure>
+    </body>
+</html>
