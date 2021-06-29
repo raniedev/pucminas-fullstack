@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Objetos Nativos</title>
+        <script>
+            console.log(Infinity + " " + NaN + " " + undefined + " " + null);
+            let valor_x = parseFloat("35.4");
+            console.log(typeof valor_x, valor_x);
+            let valor_y = parseInt("35.4");
+            console.log(typeof valor_y, valor_y);
+
+            let url_google = "www.google.com";
+            encodeURI(url_google);
+            console.log(url_google);
+            decodeURI(url_google);
+            console.log(url_google);
+
+            let random_text = "Lorem ipsum dolor sit, amet consectetur adipisicing elit.";
+            console.log(random_text.substring(6, 14));
+            console.log(random_text.slice(10, 20));
+
+            let saudacao = "Olá _____, tudo bem?";
+            let nome = "Renata";
+            console.log(saudacao.replace("_____", nome));
+
+            let caps = "DESLIGA O CAPS LOCK";
+            console.log(caps.toLowerCase());
+
+            let importante = "aviso importante!";
+            console.log(importante.toUpperCase());
+
+            let espacos = "  <-2--3->   <-3--4->    <-4--1-> <-1--5->     <-5--3->   ";
+            console.log(espacos);
+            console.log(espacos.trim());
+            console.log(espacos.trimStart());
+            console.log(espacos.trimEnd());
+
+            let telefone = "(00)98765-4321";
+            let ultimos_4 = telefone.slice(-4);
+            console.log(telefone);
+            console.log(ultimos_4.padStart(telefone.length, '*')); // também possui PadEnd()
+
+            console.log(telefone.search('0'));
+            console.log(telefone.match('0'));
+            console.log(telefone.split('0'));
+
+            let string_a = `Meu nome é: ${nome}`;
+            let string_b = `My name is: ${nome}`;
+
+            console.log(string_a.startsWith('My'));
+            console.log(string_b.startsWith('My'));
+            console.log(nome, string_a.endsWith(nome));
+            console.log(nome, string_b.endsWith(nome));
+            console.log("Romã".localeCompare("Roma"));
+            console.log("Roma".localeCompare("Roma"));
+            console.log("Roma".localeCompare("romã"));
+
+            console.log(Math.PI);
+            console.log(Math.random());
+            console.log(Math.floor(Math.random() * 10) + 1);
+
+            let valor_z = 25.12;
+            
+        </script>
+    </head>
+    <body>
+        <h1>Objetos Nativos</h1>
+    </body>
+</html>
