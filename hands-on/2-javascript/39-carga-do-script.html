@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- O atributo defer segura a execução do script até a montagem do DOM -->
+        <script defer src="js/script.js"></script>
+        <title>Carga dos Scripts</title>
+    </head>
+    <body>
+        <h1>Carga dos Scripts</h1>
+        <div id="output"></div>
+        <!-- Opção de por a chamada do script logo no final -->
+        <!-- <script src="js/script.js"></script>  -->
+        <h2>async/defer</h2>
+        <p>Os atributos async e defer são usados para determinar a forma de carga do script e o momento da sua execução, especialmente quando isso leva muito tempo.</p>
+        <ul>
+            <li>Sem atributos - O script é carregado e executado imediatamente.<br><code>&lt;script src="script.js"&gt;&lt;/script&gt;</code></li>
+            <li>async - O script é carregado paralelamente e executado logo que esteja pronto.<br><code>&lt; async src="script.js"&gt;&lt;/script&gt;</code></li>
+            <li>defer - O script é carregado paralelamente e executado somente quando o DOM estiver pronto.<br><code>&lt;script defer src="script.js"&gt;&lt;/script&gt;</code></li>
+        </ul>
+    </body>
+</html>

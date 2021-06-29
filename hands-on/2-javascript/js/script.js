@@ -1,0 +1,1 @@
+document.querySelector('#output').innerHTML = '<p>Script executado</p>';
