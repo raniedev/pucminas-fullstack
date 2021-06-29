@@ -59,11 +59,50 @@
             console.log("Roma".localeCompare("romã"));
 
             console.log(Math.PI);
+            console.log(Math.E);
+            console.log(Math.LN10);
+            console.log(Math.SQRT2);
             console.log(Math.random());
             console.log(Math.floor(Math.random() * 10) + 1);
 
-            let valor_z = 25.12;
+            console.log(Math.abs(-50), Math.abs(50));
+            console.log(Math.sign(-15), Math.sign(0), Math.sign(15));
+            console.log(Math.ceil(25.30));
+            console.log(Math.floor(25.30));
+            console.log(Math.round(25.30), Math.round(25.50), Math.round(25.80));
+            console.log(Math.trunc(151.44));
+
+            console.log(Math.pow(3, 3));
+            console.log(Math.sqrt(25));
+            console.log(Math.max(3, 15, 777, 44, 100));
+            console.log(Math.min(0, -10, 77, 324, 4));
+            console.log(Math.sin(Math.PI/2));
+            console.log(Math.cos(Math.PI));
+            console.log(Math.tan(1));
+
+            // \d	Any digit character
+            // \w	An alphanumeric character (“word character”)
+            // \s	Any whitespace character (space, tab, newline, and similar)
+            // \D	A character that is not a digit
+            // \W	A nonalphanumeric character
+            // \S	A nonwhitespace character
+            // .	Any character except for newline
+
+            function checarCpf(str) {
+                const regexCpf = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/; 
             
+                if (str.match(regexCpf)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            let cpf = "111.222.333-44";
+            console.log(checarCpf(cpf));
+
+            let vetor = [55, 3, -3, 4, 0, 14, 9, 0, 4, 123];
+            console.log(vetor.sort()); //ordena pelo primeiro digito/letra, neste caso não considera o valor
         </script>
     </head>
     <body>
