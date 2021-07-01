@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Closure</title>
+        <script defer src="js/closure.js"></script>
+    </head>
+    <body>
+        <h1>Closure</h1>
+        <p>Closure(fechamento) é a forma como uma função se lembra de seu contexto, mesmo que esse contexto esteja fechado.</p>
+<code><pre>function criaContador() {
+    let n = 0;
+    return function() {
+        console.log(n++);
+    };
+}</pre></code>
+        
+    </body>
+</html>
