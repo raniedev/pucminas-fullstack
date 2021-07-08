@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/promise.js"></script>
+        <title>Promise</title>
+        <style>
+            #sinc_assinc {
+                width: 500px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Promise</h1>
+        <p>Um <strong>promise</strong> é uma promessa de resposta. Essa estrutura busca padronizar a forma de criação de funções assíncronas.</p>
+<code><pre>let fnResolve = function(resposta){
+        //faz alguma coisa com a resposta
+};
+
+let fnReject = function(erro){
+    //trata o erro
+};
+
+fnAsync(dados).then(fnResolve, fnReject)</pre></code>
+        <p><strong>Resolve</strong> e <strong>Reject</strong> são os nomes comunente usados com Promises para as funções de sucesso e de falha.</p>
+        <img id="sinc_assinc" src="img/sincrono-assincrono.jpg" alt="Diferença entre síncrono e assíncrono.">
+
+        <h2>Anatomia da chamada síncrona</h2>
+        <p>Uma chamada de função assíncrona deve incluir a função a ser executada quando a operação for concluída</p>
+<code><pre>let fnSucesso = function(resposta){
+    //faz alguma coisa com a resposta
+}
+
+let fnFalha = function(erro){
+    //trata o erro
+}
+</pre></code>
+        <p>A função assíncrona executará o processo usando os dados. Quando ela concluir a operação, executará a função callback de sucesso ou a função callback de falha.</p>
+
+        <h2>Criação de um Promise</h2>
+        <p>Nós podemos criar nossas próprias funções assíncronas usando um Promise.</p>
+<code><pre>function fnAsync(dados){
+    //faz alguma coisa com os dados
+    
+    return new Promise(function(resolver, reject){
+        if(ok)
+            resolve(resposta);
+        else
+            reject(erro);
+    });
+}</pre></code>
+    </body>
+</html>
