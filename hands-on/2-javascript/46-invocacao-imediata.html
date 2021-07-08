@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IIFE</title>
+        <script defer src="js/invocacao-imediata.js"></script>
+    </head>
+    <body>
+        <h1>Expressões de Função</h1>
+        <p>Uma expressão de função é uma função (geralmente anônima) que pode ser atribuída a uma variável como uma expressão qualquer.</p>
+        <p>E essa função pode ser invocada da mesma forma que uma função tradicional</p>
+        
+        <h2>Invocacao Imediata</h2>
+        <p>Mas se ela é uma expressão, ela pode ser executada diretamente, sem a necessidade de ser armazenada em uma variável.</p>
+        <p>Para isso, o compilador apenas precisa saber que não se trata de uma declaração de função tradicional (colocando a expressão entre parênteses).</p>
+<code><pre>(function(nome) {
+    console.log(`Olá ${nome}`);
+})('Marcos');</pre></code>
+        <p>Isso é chamado de: <strong>IIFE - Immediately Invoked Function Expression</strong></p>
+
+        <h2>Atenção</h2>
+        <p>Se atribuirmos uma IIFE a uma variável, o que realmente será armazenado é o resultado do processamento da função.</p>
+<code><pre>let ola = (function (nome) {
+    return `Olá ${nome}`;
+})('Marcos');
+
+console.log(ola); // Olá Marcos
+console.log(typeof ola); // string
+<s>ola();</s> // TypeError</pre></code>
+    </body>
+</html>
