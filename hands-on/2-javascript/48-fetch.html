@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script defer src="js/fetch.js"></script>
+        <title>Fetch</title>
+        <style>
+            img {
+                padding: 4px;
+                border: 1px dashed black;
+                margin: 10px 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="output">            
+        </div>        
+        <h1>Fetch</h1>
+        <p>A API Fetch é uma alternativa mais simples que AJAX para a carga de recursos on-line:</p>
+<code><pre>fetch(URL).then(function(resp){
+    if(resp.ok)
+        return resp.json();
+}).then(function(objeto){
+    //faz algo com esse objeto
+}).catch(function(erro){
+    //emite alguma mensagem de erro
+});</pre></code>
+        <h2>Alternativas de resposta</h2>
+        <p>Com Fetch, é possível se carregar textos, objetos JSON e arquivos binários.</p>
+        <p>.json() retorna um objeto JSON<br>.text() retorna um texto<br>.blob() retorna um objeto Blob</p>
+        <p>Um Blob geralmente é um arquivo binário (<em>BLOB - Binary Large OBject</em>)</p>
+<code><pre>var obj = URL.createObjectURL(myBlob);
+myImage.src = objectURL;</pre></code>
+
+        <h2>Envio de dados</h2>
+        <p>Também é possível usar a API Fetch para uma requisição do tipo POST</p>
+<code><pre>fetch('someurl/comment', {
+    method: 'POST',
+    body: 'title=hello&message=world'
+})
+
+ou
+
+fetch('someurl/comment', {
+    method: 'POST',
+    body: new FormData(document.getElementById('myForm'))
+})</pre></code>
+        <h2>CORS - Cross-Origin Resource Sharing</h2>
+        <p>Arquivos de outros domínios só podem ser acessados se o servidor aceitar requisições externas.</p>
+        <img src="img/cors.jpg" alt="Cross-origin Resoruce Sharing">
+    </body>
+</html>
