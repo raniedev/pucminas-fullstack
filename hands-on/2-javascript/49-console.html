@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Console</title>
+        <script defer src="js/console.js"></script>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 10px;
+                text-align: center;
+            }
+
+            code {
+                color: blueviolet;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Mensagens no Console</h1>
+        <p>Apesar de estarmos sempre usando o método log() do objeto console, ele oferece muitas outras alternativas mais específicas:</p>
+        <ul>
+            <li><code>console.log("mensagem")</code></li>
+            <li><code>console.info("informação")</code></li>
+            <li><code>console.debug("depuração")</code></li>
+            <li><code>console.warn("alerta")</code></li>
+            <li><code>console.error("erro")</code></li>
+        </ul>
+
+        <h2>Dados nas mensagens</h2>
+        <p>Podemos inserir dados na mensagem, usando esses marcadores:</p>
+        <ul>
+            <li><strong>%d</strong> - número<br><code>console.log('Temperatura: %d graus', 37);</code></li>
+            <li><strong>%s</strong> - string<br><code>console.log('Olá %s. Bem-vindo', 'Marcos');</code></li>
+            <li><strong>%o</strong> - objeto<br><code>let usuario = {nome: 'Marcos', idade: 51};<br>console.log('Seus dados: %o', usuario);</code></li>
+            <li><strong>%c</strong> - CSS<br><code>console.log('%cAtenção', 'color: red; background-color: yellow;');</code></li>
+        </ul>
+
+        <h2>Vetores</h2>
+        <p>Vetores podem ser impressos na forma de uma tabela:</p>
+<code><pre>let produtos = [
+    {nome: 'TV', preço: 2190.0},
+    {nome: 'Geladeira', preço: 1700.0},
+    {nome: 'Microondas', preço: 519.0}
+];
+console.table(produtos);</pre></code>
+        <table>
+            <thead>
+                <tr>
+                    <th>(index)</th>
+                    <th>nome</th>
+                    <th>preço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>"TV"</td>
+                    <td>2190</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>"Geladeira"</td>
+                    <td>1700</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>"Microondas"</td>
+                    <td>519</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Grupos</h2>
+        <p>Vetores podem ser impressos na forma de uma tabela:</p>
+<code><pre>console.group();
+console.log('Grupo 1');
+console.group();
+console.log('Subgrupo');
+console.log('Subgrupo também');
+console.groundEnd();
+console.groundEnd();
+console.group();
+console.log('Grupo 2');
+console.groupEnd();
+</pre></code>
+
+        <h2>Contadores</h2>
+        <p>Podemos ter 1 ou mais contadores paralelos</p>
+<code><pre>console.count('a');
+console.count('a');
+console.count('a');
+console.count('b');
+console.count('a');
+console.count('b');
+</pre></code>
+
+        <h2>Testes</h2>
+        <p>Também podemos testar algumas condições e só registrar uma mensagem(de erro) se as condições falharem</p>
+<code><pre>for(let i = 0; i &lt; 5; i++) {
+    console.assert(i % 2 == 0, '%d não é par', i);
+}</pre></code>
+
+        <h2>Pilhas de chamadas</h2>
+        <p>Às vezes, acompanhar que função estão chamando a função que deu erro pode ser um pouco complicado. Este comando ajuda a identificar a pilha de chamadas</p>
+<code><pre>function fn1() {
+    fn2();
+}
+
+function fn2() {
+    consol.trace('Chamada na fn2');
+}
+
+fn1();
+fn2();
+</pre></code>
+
+        <h2>Cronômetro</h2>
+        <p>Também é possível medir o tempo de uma operação.</p>
+<code><pre>console.time('T1');
+let total = 0;
+for (let i = 0; i &lt; 10000; i++) {
+    total += i;
+}
+console.timeEnd('T1');</pre></code>
+
+        <h2>Outros</h2>
+        <p>Situação da memória <code>console.log(console.memory);</code></p>
+        <p>Limpeza do console <code>console.clear();</code></p>
+    </body>
+</html>
