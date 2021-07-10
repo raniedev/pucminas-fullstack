@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Módulos</title>
+        <script defer type="module" src="js/modulo.js"></script>
+    </head>
+    <body>
+        <h1>Módulos</h1>
+        <p>Na medida em que a aplicação começa a crescer, a gente precisa organizá-la de uma forma diferente, separando os códigos por funcionalidade e em arquivos específicos. Esses arquivos são os <strong>módulos.</strong></p>
+        <p>Os módulos podem ser carregados de acordo com a necessidade, diminuindo o tempo inicial da aplicação e reduzindo o uso de memória.</p>
+
+        <h2>Módulo</h2>
+        <p>Um módulo é nada mais do que um arquivo de script em que tudo(variáveis, constantes, funções, ...) que puderem ser usadas externamente tem um nome exportado.</p>
+<code><pre>const PI = 3.14159;
+export class Circulo {
+    constructor(r) {
+        this.raio = r;
+    }
+
+    perimetro() {
+        return 2 * PI * this.raio;
+    }
+
+    area() {
+        return PI * Math.pow(this.raio, 2);
+    }
+}
+</pre></code>
+    </body>
+</html>
