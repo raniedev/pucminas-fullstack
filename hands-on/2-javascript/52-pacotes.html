@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gerenciamente de Pacotes</title>
+        <script defer type="module" src="js/pacote.js"></script>
+        <style>
+            img {
+                width: 200px;
+            }
+
+            #radiodisc-off {
+                list-style: none;
+            }
+
+            a, a:visited {
+                color: royalblue;
+            }
+
+            a:active {
+                color: indianred;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="output">
+             
+        </div>
+        <h1>Gerenciamente de Pacotes</h1>
+        <p>É bem provável que quase tudo que nós precisarmos em JavaScript já tenha sido desenvolvido por alguém. Assim, nossa aplicação certamente dependerá de <strong>pacotes</strong> de terceiros.</p>
+        <p>Um <strong>pacote</strong> é um pedaço de software reusável que pode ser baixado de um repositório. Um pacote pode depender de outro pacote. Isso é chamado de <strong>dependência.</strong></p>
+        
+        <h2>Gerenciador de pacotes</h2>
+        <p>Um <strong>gerenciador de pacotes</strong> é um software que gerencia todas as dependências da nossa aplicação, facilitando a sua instalção dos códigos de terceiros.</p>
+        <p>Para isso, o gerenciador de pacotes usa um arquivo de <strong>manifesto</strong>, geralmente chamado de <strong>package.json</strong></p>
+        
+        <p>Os <strong>gerenciadores de pacotes</strong> mais usados são:</p>
+        <img src="img/npm.png" alt="Gerenciador de pacotes NPM (Node package manager)">
+        <p><a href="https://www.npmjs.com" target="_blank" title="Node Package Manager">npmjs.com</a> <em>O npm já vem instalado com o Node.</em></p>
+        <img src="img/yarn.png" alt="Gerenciador de pacotes Yarn">
+        <p><a href="https://yarnpkg.com" target="_blank" title="Yarn Package Manager">yarnpkg.com</a></p>
+
+        <h2>npm</h2>
+        <p>O npm é um gerenciador de pacotes que faz parte do Node.js (e você já o tem instalado).</p>
+        <p>Para usá-lo, você deve criar um diretório para sua aplicação usando o terminal e criar o manifesto:</p>
+        <ul id="radiodisc-off">
+            <li>mkdir myapp</li>
+            <li>cd myapp</li>
+            <li>npm init</li>
+        </ul>
+
+        <h2>Repositório</h2>
+        <p>O repositório do npm conta com uma vasta quantidade de pacotes que podem ser instalados a partir do npm.</p>
+        <p>Exemplos:</p>
+        <h3>uuid</h3>
+        <ul>
+            <li><a href="https://www.npmjs.com/package/uuid" target="_blank" title="Npmjs Uuid">npmjs.com/package/uuid</a></li>
+            <li>Gerador de identificadores universais</li>
+        </ul>
+        <h3>translate</h3>
+        <ul>
+            <li><a href="https://www.npmjs.com/package/translate" target="_blank" title="Npmjs Translate">npmjs.com/package/translate</a></li>
+            <li>Tradução automática usando os serviços do Google, Yandex ou Libre (sem chave)</li>
+        </ul>
+
+        <p><code>npm install &lt;nome_do_pacote&gt;</code></p>
+
+        <h2>Manifesto atualizado</h2>
+<code><pre>{
+    "name": "myapp",
+    "version": "1.0.0",
+    "description": "Aplicação de teste",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "João da Silva",
+    "license": "ISC",
+    "dependencies": {
+        "translate": "^1.2.3",
+        "uuid": "^8.3.2"
+    }
+}</pre></code>
+
+        <ul id="radiodisc-off">
+            <li>^ atualização da versão menor</li>
+            <li>~ atualização da versão de correção</li>
+            <li><a href="https://semver.org/lang/pt-BR" target="_blank" title="Semver">semver.org</a></li>
+        </ul>
+
+        <p>Atualização dos pacotes:</p>
+        <p><code>npm update</code></p>
+        
+        <h2>Empacotadores</h2>
+        <p>Um <strong>package bundler</strong> empacota todos os módulos de uma aplicação e gera uma versão de distribuição.</p>
+        <p>Geralmente, cada <strong>ponto de entrada</strong> (<i>entry point</i>) deve ser especificado explicitamente. Pontos de entrada são os URLs por onde o usuário pode começar a navegação no site.</p>
+
+        <h2>Parcel</h2>
+        <p>O Parcel é um empacotador simples e fácil de ser usado. Outros bastante usados são: <strong>Webpack</strong> e <strong>Browserify</strong>.</p>d
+        <p>Ele pode ser instalado globalmente por meio do comando:</p>
+        <p><code>npm install -g parcel-bundler</code></p>
+        <p>E pode ser executado com o(s) ponto(s) de entrada:</p>
+        <p><code>parcel index.html</code></p>
+        <p>O código (no diretório <strong>dist</strong>) poderá ser executado no endereço:</p>
+        <p><code>http:localhost:1234</code></p>
+        <img src="img/parcel.png" target="_blank" alt="Parcel Bundler">
+
+        <h2>Single Page Applications (SPA)</h2>
+        <p>Apesar de possível se criar vários pontos de entrada, a tendência atual é a criação de aplicações web de página única.</p>
+        <p>Nessas aplicações, o URL é analisado para se identificar que recurso o usuário deseja acessar.</p>
+        <p><code>http://localhost:1234/produtos?filtro=TV&pagina=1</code></p>
+<code><pre>console.log(location.pathname);
+let paramentros = new URLSearchParams(location.search);
+console.log(parametros.get('filtro'));
+console.log(parametros.get('pagina'));
+</pre></code>
+    </body>
+</html>
