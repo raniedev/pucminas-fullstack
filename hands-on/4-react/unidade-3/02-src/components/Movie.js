@@ -12,7 +12,7 @@ export const Movie = ({movie}) => {
             <div className="movie-excerpt">
                 <h3>{movie.title}</h3>
                 <Link to={`/movie/${movie.id}`} className="btn btn-primary">Ver detalhes</Link>
-                <button class="btn btn-secondary" onclick={() => dispatch(addMovie(movie))}>Adicionar aos favoritos</button>
+                <button class="btn btn-secondary" onClick={() => dispatch(addMovie(movie))}>Adicionar aos favoritos</button>
             </div>
         </div>
     );
